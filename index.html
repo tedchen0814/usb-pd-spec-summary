@@ -156,7 +156,7 @@
 </head>
 <body>
   <header>
-    <h1>USB PD R3.2 V1.2 規範摘要 (融合實務 Q&A)</h1>
+    <h1>USB Power Delivery (PD)規範</h1>
     <div class="select-wrapper">
       <label for="chapter-select" style="font-weight: bold;">快速跳轉：</label>
       <select id="chapter-select" onchange="scrollToChapter()">
@@ -178,6 +178,9 @@
         <option value="ch15">15. FW 設計規格與系統交付 Check List</option>
         <option value="ch16">16. E-Marker 晶片與線纜通訊機制</option>
         <option value="ch17">17. USB Type-C 腳位定義與設備偵測</option>
+        <option value="ch18">18. Dead Battery 機制與 CC 5.1kΩ 下拉電阻</option>
+        <option value="ch19">19. Fast Role Swap (FRS) 機制</option>
+        <option value="changelog">修改歷史紀錄</option>
       </select>
     </div>
   </header>
@@ -732,6 +735,121 @@
           </tbody>
         </table>
       </div>
+    </div>
+
+    <!-- Chapter 18 -->
+    <div id="ch18" class="chapter">
+      <h2>Chapter 18. Dead Battery 機制與 CC 5.1kΩ 下拉電阻</h2>
+      <p>Dead Battery（沒電狀態）機制與 CC 腳位上的 <span class="highlight">5.1kΩ 下拉電阻 (Rd)</span> 是唇齒相依的設計，目的是解決「當裝置完全沒電、系統主控 IC 無法運作時，要如何讓充電器願意送電出來」的難題。</p>
+
+      <h3>一、為什麼需要 5.1kΩ (Rd)？</h3>
+      <p>Type-C 基本偵測邏輯中，Source 端在 CC 腳位掛上拉電阻 (Rp)，Sink 端必須掛 <strong>5.1kΩ 到地的下拉電阻 (Rd)</strong>。裝置處於 Dead Battery 狀態時，系統沒有任何 VDD/VCC 可驅動 GPIO 或邏輯電路——若此時接上充電器卻偵測不到 Rd，充電器會判定「沒有裝置插入」，VBUS 絕不會輸出電壓。</p>
+
+      <h3>二、TCPC 的 Dead Battery 硬體實作</h3>
+      <p>為了在「無電可用」狀態下依然呈現 5.1kΩ，支援 Dead Battery 的 TCPC (Type-C Port Controller) 具備特殊硬體結構：</p>
+      <ul>
+        <li><strong>常閉型下拉機制：</strong> 利用 Depletion-mode MOSFET（空乏型金氧半場效電晶體）等無源電路設計，當 TCPC 主電源 (VDD) 為 0V 時，內部 5.1kΩ Rd 會自動且預設地連接到 CC 腳位。</li>
+        <li><strong>DRP (Dual Role Power) 的降級：</strong> 即使裝置設計為 DRP，在 Dead Battery 狀態下 TCPC 會強制將自己配置為 Sink（掛上 Rd），因為此時系統根本沒有電源可提供 VBUS 輸出。</li>
+      </ul>
+
+      <h3>三、從沒電到 PD 協商的「接力」流程</h3>
+      <ol>
+        <li><strong>實體層喚醒：</strong> TCPC 在無電狀態下靠硬體呈現 5.1kΩ Rd，充電器偵測到後輸出 <code>vSafe5V</code> 到 VBUS。</li>
+        <li><strong>TCPC 供電：</strong> VBUS 的 5V 進入 TCPC，內建的小型 LDO 轉換成 3.3V，供應內部邏輯電路或讓系統端 EC/TCPM 開機。</li>
+        <li><strong>TCPM 接管 (Takeover)：</strong> 系統的大腦 (TCPM) 開機完成後，透過 I2C 初始化 TCPC。</li>
+        <li><strong>電阻切換：</strong> TCPM 下達指令，將 TCPC 從「硬體 Dead Battery Rd」無縫切換成「暫存器控制的 Active Rd」。</li>
+        <li><strong>啟動 PD 協議：</strong> 系統已具備運算能力，TCPM 透過 CC 線發送 BMC 訊號，請求 Source Capabilities，並發送 RDO（例如要求 20V/3A）以進入快充狀態。</li>
+      </ol>
+
+      <div class="qa-box">
+        <div class="qa-title">實務觀點：硬體研發的除錯注意事項</div>
+        <p><strong>Leakage (漏電流) 干擾：</strong> CC 線上的靜電保護元件 (TVS) 或其他並聯元件如果漏電流過大，會改變 5.1kΩ 的等效阻值，導致有些充電器 (Source) 判定失敗而不給電。</p>
+        <p><strong>交接空窗期 (Dead-Battery to Active Transition)：</strong> 當 TCPM 喚醒並準備接管 TCPC 的瞬間，若韌體寫入暫存器的時序沒有處理好，導致 CC 腳位上的 Rd 瞬間消失超過 <code>tCCDebounce</code>（約 10ms~20ms），充電器會誤以為裝置被拔除，瞬間切斷 VBUS，導致系統陷入「開機 → 斷電 → 開機」的無限迴圈。</p>
+      </div>
+    </div>
+
+    <!-- Chapter 19 -->
+    <div id="ch19" class="chapter">
+      <h2>Chapter 19. Fast Role Swap (FRS) 機制</h2>
+      <p><strong>Fast Role Swap (FRS)</strong> 是 USB PD 3.0 引入的關鍵功能，解決的痛點是：當帶有供電能力的集線器 (Hub) 或擴充基座 (Dock) 突然被拔除外部電源時，如何確保連接在上面的裝置（如隨身碟、硬碟）不會因為斷電而導致資料傳輸中斷。</p>
+      <p>傳統的 <code>PR_Swap</code> (Power Role Swap) 由軟體（TCPM 的狀態機）主導交握，耗時長達數十到數百毫秒，VBUS 必定掉電，連帶 Data Role 也跟著中斷重連。FRS 的核心概念是：透過純硬體的實體層訊號，在極短時間內（通常 <span class="highlight">150µs</span> 內）完成供電角色切換，讓原本吃電的裝置 (Sink) 瞬間變成供電的裝置 (Source)，維持 VBUS 在 <code>vSafe5V</code> 不掉電。</p>
+
+      <h3>一、FRS 的硬體觸發機制與時序</h3>
+      <p>FRS 的觸發完全繞過冗長的 PD 封包傳遞，直接在 CC (Configuration Channel) 腳位上做文章：</p>
+      <ol>
+        <li><strong>初始狀態：</strong> 假設筆電目前是 Sink（受電端，吃 Hub 的電），Hub 是 Source（供電端）。</li>
+        <li><strong>Hub 外部斷電 (FRS 觸發)：</strong> Hub 偵測到外部電源被拔除，其 TCPC 會在非常短的時間內將 CC 腳位強制下拉至接地 (&lt; 60mV)，此動作稱為 <strong>Fast Role Swap Signal (FRS Signal)</strong>。</li>
+        <li><strong>筆電端偵測：</strong> 筆電端 TCPC 內部有專用的類比比較器，一旦偵測到 CC 腳位出現這個異常低電位，就判定收到 FRS 訊號。</li>
+        <li><strong>角色互換與供電接手 (150µs 死線)：</strong> 舊的 Source (Hub) 須關閉 VBUS 輸出、開啟 VBUS 消耗路徑準備成為 Sink；新的 Source (筆電) 須在 150µs 內開啟內部的 5V VBUS 供電路徑，接手向 Hub 供電。</li>
+      </ol>
+
+      <h3>二、對硬體研發工程師的設計挑戰</h3>
+      <h4>1. TCPM 的 I2C 延遲是致命傷</h4>
+      <p>TCPM 依賴 I2C 讀寫 TCPC 暫存器。若 TCPC 收到 FRS 訊號後只透過 <code>ALERT#</code> 通知 TCPM，等 TCPM 喚醒、讀取狀態、再下達開啟 VBUS 的指令，絕對來不及趕上 150µs 的死線。<strong>硬體解法：</strong>支援 FRS 的 TCPC 通常會有一個實體硬體腳位（例如 <code>FRS_EN</code> 或 <code>GPIO_0</code>），當 TCPC 偵測到 FRS 訊號時，直接由硬體邏輯拉高該腳位，越過 TCPM 直接開啟 5V 供電路徑。</p>
+
+      <h4>2. Load Switch 的開啟時間與 Inrush Current</h4>
+      <p>筆電要瞬間送出 5V 接手供電時，通常透過一顆 Load Switch（例如 DPS1133 這類電源開關 IC）。若 Load Switch 開得太慢（例如為了 Soft-start 刻意設定很大的 slew rate），VBUS 電壓會掉到系統重置點以下，FRS 宣告失敗；若開得太快，瞬間對 Hub 端的龐大電容充電，會產生極大的 Inrush Current (湧浪電流)，可能觸發 OCP (過電流保護) 導致斷電，甚至損壞元件。設計時必須精準調校 Buck-Boost 的瞬態響應能力、Load Switch 的啟動時間 (Turn-on time)，以及 VBUS 上的去耦電容 (Decoupling Capacitors) 總量。</p>
+
+      <h4>3. Active VBUS Discharge 的干擾</h4>
+      <p>FRS 發生時，系統必須非常小心處理 VBUS 的主動放電 (Active Discharge) 電路。若舊的 Source 在切換過程中不慎觸發了放電電路，會將新的 Source 辛苦送出來的 5V 電壓瞬間拉低，導致切換失敗。</p>
+
+      <div class="qa-box">
+        <div class="qa-title">名詞對照：TCPC / TCPCi / TCPM</div>
+        <table>
+          <thead>
+            <tr>
+              <th>名詞</th>
+              <th>全名</th>
+              <th>角色與功能</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>TCPC</strong></td>
+              <td>Type-C Port Controller</td>
+              <td>硬體晶片，負責監測和控制 USB Type-C 埠的低階訊號：偵測插頭方向、CC 訊號管理、負責 PD 通訊（使用 BMC 或 FRS 訊號）、控制 VBUS 和 VCONN 供電。</td>
+            </tr>
+            <tr>
+              <td><strong>TCPCi</strong></td>
+              <td>Type-C Port Controller Interface</td>
+              <td>TCPC 的標準化介面，定義 TCPM 與 TCPC 之間的通訊協定；通常使用 I²C 或 SPI，定義 TCPC 提供的寄存器與命令集，確保不同廠商的 TCPC 晶片可與通用的 TCPM 軟體兼容。</td>
+            </tr>
+            <tr>
+              <td><strong>TCPM</strong></td>
+              <td>Type-C Port Manager</td>
+              <td>韌體/軟體層，通常由 MCU 或 SoC 負責，執行 USB PD 通訊協議，決定 USB 充電或資料傳輸模式：控制 TCPC 決定電源角色 (Source/Sink)、執行 PD 通訊（協商 5V/9V/15V/20V）、決定 Alternate Mode（如 DisplayPort over USB-C）、可根據系統需求執行 Power Role Swap (PRS)。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Changelog -->
+    <div id="changelog" class="chapter">
+      <h2>修改歷史紀錄</h2>
+      <p style="font-size:0.9rem;color:#888;">本表僅記錄可追溯的維護紀錄；檔名沿用的版本號 V15 代表本檔在此之前已歷經多次修訂，更早期各版本的異動內容未留下紀錄，故不列入下表。</p>
+      <table>
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>異動內容</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2026-08-25</td>
+            <td>抬頭 <code>&lt;h1&gt;</code> 由「USB PD R3.2 V1.2 規範摘要 (融合實務 Q&amp;A)」改為「USB Power Delivery (PD)規範」。</td>
+          </tr>
+          <tr>
+            <td>2026-08-25</td>
+            <td>新增 Chapter 18「Dead Battery 機制與 CC 5.1kΩ 下拉電阻」、Chapter 19「Fast Role Swap (FRS) 機制」，內容來源為同資料夾內 <code>Dead Battery.md</code>、<code>Fast Role Swap (FRS).md</code>。</td>
+          </tr>
+          <tr>
+            <td>2026-08-25</td>
+            <td>檔名由 <code>USB_PD_R3.2_Spec_Summary_V15.html</code> 改為 <code>USB_PD_Knowledge_20260825.html</code>。</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
   </div>
