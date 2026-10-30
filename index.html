@@ -139,6 +139,31 @@
     margin-top: 0;
     color: #2980b9;
   }
+  /* Chapter 18 互動動畫 */
+  .db-anim { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; margin: 20px 0 30px; }
+  .db-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .db-tab { padding: 8px 14px; border: 1px solid #cbd5e0; background: #fff; border-radius: 20px; cursor: pointer; font-size: 0.92rem; color: #4a5568; }
+  .db-tab.active { background: #2980b9; border-color: #2980b9; color: #fff; }
+  .db-anim svg { width: 100%; height: auto; display: block; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; }
+  .db-anim svg text { font-family: 'Segoe UI', Tahoma, sans-serif; }
+  .db-anim .db-flow { stroke-dasharray: 8 8; animation: db-dash 0.7s linear infinite; }
+  .db-anim .db-bmc { stroke-dasharray: 4 5; animation: db-dash 0.35s linear infinite; }
+  @keyframes db-dash { to { stroke-dashoffset: -16; } }
+  .db-chips { display: flex; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+  .db-chip { background: #fff; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 12px; font-size: 0.9rem; color: #4a5568; }
+  .db-chip b { color: #2c3e50; }
+  .db-caption { background: #fff; border-left: 4px solid #3498db; border-radius: 4px; padding: 10px 16px; min-height: 84px; }
+  .db-caption .db-step-title { font-weight: bold; color: #2c3e50; margin-bottom: 4px; font-size: 1.05rem; }
+  .db-caption .db-step-desc { margin: 0; font-size: 0.98rem; }
+  .db-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .db-btn { padding: 8px 16px; border: 1px solid #2980b9; background: #fff; color: #2980b9; border-radius: 6px; cursor: pointer; font-size: 0.95rem; }
+  .db-btn:hover { background: #e3f2fd; }
+  .db-btn.primary { background: #2980b9; color: #fff; }
+  .db-dots { display: flex; gap: 6px; margin-left: auto; }
+  .db-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #cbd5e0; background: #fff; cursor: pointer; padding: 0; }
+  .db-dot.done { background: #a9cce3; border-color: #a9cce3; }
+  .db-dot.cur { background: #2980b9; border-color: #2980b9; }
+  @media (prefers-reduced-motion: reduce) { .db-anim .db-flow, .db-anim .db-bmc { animation: none; } }
 </style>
 <script>
   function scrollToChapter() {
@@ -152,6 +177,147 @@
       window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     }
   }
+
+  // Chapter 18：Dead Battery 互動動畫（左：DRP 裝置，右：沒電的 Sink）
+  document.addEventListener("DOMContentLoaded", function () {
+    var root = document.getElementById("db-anim");
+    if (!root) return;
+    var $ = function (id) { return document.getElementById(id); };
+    var COL = { off: "#cbd5e0", on: "#27ae60", v20: "#2980b9" };
+    var CC_RP = "Rp 相位：CC ≈ 0.41V（Rp 80µA × 5.1kΩ，看到 Rd）";
+    var CC_RD = "Rd 相位：CC ≈ 0V（Rd 對 Rd，看不到 Rp）";
+
+    function S(o) {
+      var s = { sw: false, vbus: 0, hw: true, act: false, ldo: false, tcpm: false, bmc: false, drp: false,
+        ccRp: CC_RP, ccRd: CC_RD, cc: "", t: "", d: "" };
+      for (var k in o) s[k] = o[k];
+      return s;
+    }
+    var LOCK = "CC ≈ 0.41V（DRP 已鎖定為 Source，持續呈現 Rp）";
+    var s0 = S({ drp: true, t: "① 插上 DRP 裝置：對側沒電，只有 Rd；DRP 的 CC 在 Rp / Rd 間切換",
+      d: "右側裝置電池耗盡，TCPC 的 VDD 為 0V，但無源電路在無電時預設動作：把 5.1kΩ Rd 接到 CC（Depletion-mode MOSFET 作法），或把 CC 電壓箝位在 VCLAMP 等效成 Rd（如 TI TPS66994）。左側 DRP 裝置不知道對側是誰，所以 CC 會週期性地在 Rp（拉高）與 Rd（接地）之間來回切換。動畫已放慢，實際 tDRP 約 50~100ms。" });
+    var s1 = S({ drp: true, t: "② DRP 在 Rp 相位偵測到 Rd，並持續 tCCDebounce",
+      d: "DRP 呈現 Rd 的時段，對側也是 Rd，CC 沒有任何上拉，什麼都偵測不到；只有切到 Rp 的時段，才會與對側 Rd 形成分壓而看到「有 Sink」。DRP 必須在多個 Rp 相位連續看到 Rd 並維持 tCCDebounce（100~200ms），才判定連接，避免雜訊誤判。Rp 電流越大（預設 80µA、1.5A 約 180µA、3A 約 330µA），箝位電壓也跟著升高，等效於固定的 5.1kΩ。" });
+    var s2 = S({ sw: true, vbus: 5, cc: LOCK, t: "③ 判定連接，DRP 鎖定為 Source 並送出 vSafe5V",
+      d: "連接成立後，DRP 停止切換、固定呈現 Rp 成為 Source，並閉合 VBUS 開關輸出 vSafe5V。若對側看不到 Rd，DRP 就會一直切換、永遠不供電。" });
+    var s3 = S({ sw: true, vbus: 5, ldo: true, tcpm: true, cc: LOCK, t: "④ VBUS 供電，LDO 喚醒 TCPC 與 TCPM",
+      d: "VBUS 的 5V 進入 TCPC 內建的小型 LDO，轉成 3.3V，讓 TCPC 邏輯與系統端 EC/TCPM 開機。裝置第一次「自己有電」，但 CC 上仍是硬體 Rd。" });
+    var s4 = S({ sw: true, vbus: 5, ldo: true, tcpm: true, act: true, hw: false, cc: LOCK, t: "⑤ TCPM 接管，Rd 無縫切換",
+      d: "TCPM 透過 I2C 初始化 TCPC，將 CC 上的 Rd 由「硬體 Dead Battery Rd」改成「暫存器控制的 Active Rd」。關鍵是先接上 Active Rd、再放掉硬體 Rd，CC 上全程不能出現沒有 Rd 的空窗。" });
+    var s5 = S({ sw: true, vbus: 20, ldo: true, tcpm: true, act: true, hw: false, bmc: true, cc: "BMC 通訊中", t: "⑥ PD 協商：Source_Capabilities → RDO → 20V",
+      d: "系統已有運算能力，TCPM 在 CC 上以 BMC 訊號收到 Source_Capabilities，送出 Request（RDO，例如 20V/3A），DRP 端回應 Accept 與 PS_RDY 後把 VBUS 升到 20V，開始快充。" });
+
+    var NORD = "Rp 相位：CC 被 Rp 拉到高電位（開路，沒有 Rd）";
+    var SC = {
+      ok: { loop: false, steps: [s0, s1, s2, s3, s4, s5] },
+      nord: { loop: false, steps: [
+        S({ hw: false, drp: true, ccRp: NORD, t: "① 裝置沒電，也沒有 Dead Battery Rd",
+          d: "設計時漏掉了無源的硬體 Rd（或箝位電路），或 Rd 要靠 VDD 才會接上。電池耗盡時 CC 腳位是浮接的。DRP 照常在 Rp / Rd 間切換。" }),
+        S({ hw: false, drp: true, ccRp: NORD, t: "② DRP 兩個相位都看不到 Rd",
+          d: "Rp 相位時 CC 沒有分壓，被拉到高電位；Rd 相位時對側沒有 Rp，什麼都沒有。DRP 判定「沒有裝置插入」，VBUS 開關保持斷開。" }),
+        S({ hw: false, drp: true, ccRp: NORD, t: "③ 結果：DRP 一直切換，永遠不供電",
+          d: "裝置沒電所以沒有 Rd，沒有 Rd 對方就不供電，形成死結。這就是為什麼 Dead Battery 一定要有無源（不靠 VDD）的 Rd。" })
+      ] },
+      gap: { loop: true, steps: [s0, s1, s2, s3,
+        S({ sw: true, vbus: 5, ldo: true, tcpm: true, hw: false, act: false, cc: "CC 開路（Rd 消失）", t: "⑤ 失敗：交接空窗，CC 上暫時沒有 Rd",
+          d: "韌體時序沒處理好，硬體 Rd 已經放掉、Active Rd 還沒接上。CC 在這段期間沒有任何 Rd，DRP（此時是 Source）開始計 debounce 時間。" }),
+        S({ sw: false, vbus: 0, ldo: true, tcpm: true, hw: false, act: false, drp: true, ccRp: NORD, t: "⑥ 空窗超過 debounce，DRP 判定拔除並回到切換偵測",
+          d: "Rd 消失的時間超過容忍的 debounce，DRP 以為裝置被拔掉，立刻切斷 VBUS，CC 重新開始 Rp / Rd 切換。" }),
+        S({ hw: true, drp: true, t: "⑦ 失電重置：硬體 Rd 重新接上，無限迴圈",
+          d: "VBUS 消失，LDO 失電，TCPM/EC 隨即重置，硬體 Rd 又自動接回 CC。DRP 再次偵測到 Rd、再次供電、再次開機……形成「開機 → 斷電 → 開機」的迴圈。" })
+      ] }
+    };
+
+    var cur = "ok", idx = 0, timer = null, phase = "rp";
+
+    function drawCC() {
+      var s = SC[cur].steps[idx];
+      var pole = $("db-pole");
+      var atRp = s.drp ? phase === "rp" : true;
+      pole.setAttribute("x2", 140);
+      pole.setAttribute("y2", atRp ? 187 : 273);
+      $("db-rp").setAttribute("stroke", atRp ? "#e67e22" : "#4a5568");
+      $("db-rp").setAttribute("stroke-width", atRp ? 3 : 1);
+      $("db-rd").setAttribute("stroke", !atRp ? "#e67e22" : "#4a5568");
+      $("db-rd").setAttribute("stroke-width", !atRp ? 3 : 1);
+      $("db-ccv").textContent = s.drp ? (phase === "rp" ? s.ccRp : s.ccRd) : s.cc;
+    }
+
+    function render() {
+      var steps = SC[cur].steps, s = steps[idx];
+      var vcol = s.vbus === 20 ? COL.v20 : s.vbus > 0 ? COL.on : COL.off;
+      $("db-sw").setAttribute("x2", s.sw ? 190 : 186);
+      $("db-sw").setAttribute("y2", s.sw ? 110 : 92);
+      var vb = $("db-vbus-b");
+      vb.setAttribute("stroke", vcol);
+      vb.setAttribute("class", s.vbus > 0 ? "db-flow" : "");
+      $("db-bmc").setAttribute("opacity", s.bmc ? 0.85 : 0);
+      $("db-bmc").setAttribute("class", s.bmc ? "db-bmc" : "");
+      $("db-hw").setAttribute("opacity", s.hw ? 1 : 0.18);
+      $("db-act").setAttribute("opacity", s.act ? 1 : 0.18);
+      // 綠線＝DRP 已判定連接；仍在 Rp / Rd 切換偵測時尚未連接，不畫
+      $("db-g-hw").setAttribute("opacity", s.hw && !s.drp ? 1 : 0);
+      $("db-g-act").setAttribute("opacity", s.act && !s.drp ? 1 : 0);
+      $("db-ldo").setAttribute("fill", s.ldo ? "#c6f6d5" : "#edf2f7");
+      $("db-ldo").setAttribute("stroke", s.ldo ? COL.on : "#a0aec0");
+      $("db-tcpm").setAttribute("fill", s.tcpm ? "#c6f6d5" : "#edf2f7");
+      $("db-tcpm").setAttribute("stroke", s.tcpm ? COL.on : "#a0aec0");
+      $("db-ldo-tcpm").setAttribute("stroke", s.tcpm ? COL.on : COL.off);
+      $("db-i2c").setAttribute("stroke", s.act && s.tcpm ? "#2980b9" : COL.off);
+      $("db-c-vbus").textContent = s.vbus ? (s.vbus === 5 ? "5V（vSafe5V）" : "20V") : "0V";
+      $("db-c-drp").textContent = s.drp ? "Rp / Rd 切換偵測中" : s.sw ? "已鎖定為 Source（Rp）" : "鎖定為 Source（Rp）";
+      $("db-c-rd").textContent = s.hw && s.act ? "兩者並聯（切換中）" : s.hw ? "硬體 DB Rd" : s.act ? "暫存器 Active Rd" : "無 Rd";
+      $("db-c-sys").textContent = s.bmc ? "PD 協商中" : s.tcpm ? "TCPM 已開機" : s.ldo ? "TCPC 供電中" : "完全沒電";
+      $("db-title").textContent = s.t;
+      $("db-desc").textContent = s.d;
+      var dots = $("db-dots").children;
+      for (var i = 0; i < dots.length; i++) dots[i].className = "db-dot" + (i === idx ? " cur" : i < idx ? " done" : "");
+      $("db-prev").disabled = idx === 0;
+      $("db-next").disabled = idx === steps.length - 1 && !SC[cur].loop;
+      drawCC();
+    }
+
+    function buildDots() {
+      var box = $("db-dots");
+      box.innerHTML = "";
+      SC[cur].steps.forEach(function (_, i) {
+        var b = document.createElement("button");
+        b.className = "db-dot";
+        b.setAttribute("aria-label", "跳到第 " + (i + 1) + " 步");
+        b.onclick = function () { stop(); idx = i; render(); };
+        box.appendChild(b);
+      });
+    }
+    function stop() { if (timer) clearInterval(timer); timer = null; $("db-play").textContent = "播放"; }
+    function advance() {
+      var n = SC[cur].steps.length;
+      if (idx < n - 1) idx++;
+      else if (SC[cur].loop) idx = 1;
+      else { stop(); return; }
+      render();
+    }
+    function setScenario(k) {
+      stop(); cur = k; idx = 0; buildDots(); render();
+      var tabs = root.querySelectorAll(".db-tab");
+      for (var i = 0; i < tabs.length; i++) tabs[i].className = "db-tab" + (tabs[i].getAttribute("data-sc") === k ? " active" : "");
+    }
+
+    var tabs = root.querySelectorAll(".db-tab");
+    for (var i = 0; i < tabs.length; i++) tabs[i].onclick = function () { setScenario(this.getAttribute("data-sc")); };
+    $("db-prev").onclick = function () { stop(); if (idx > 0) { idx--; render(); } };
+    $("db-next").onclick = function () { stop(); advance(); };
+    $("db-reset").onclick = function () { stop(); idx = 0; render(); };
+    $("db-play").onclick = function () {
+      if (timer) { stop(); return; }
+      if (idx === SC[cur].steps.length - 1 && !SC[cur].loop) idx = 0;
+      render();
+      $("db-play").textContent = "暫停";
+      timer = setInterval(advance, 4800);
+    };
+    // DRP 的 CC 在 Rp / Rd 之間切換（動畫放慢）
+    setInterval(function () { phase = phase === "rp" ? "rd" : "rp"; drawCC(); }, 900);
+    setScenario("ok");
+  });
 </script>
 </head>
 <body>
@@ -752,6 +918,20 @@
         <li><strong>DRP (Dual Role Power) 的降級：</strong> 即使裝置設計為 DRP，在 Dead Battery 狀態下 TCPC 會強制將自己配置為 Sink（掛上 Rd），因為此時系統根本沒有電源可提供 VBUS 輸出。</li>
       </ul>
 
+      <h4>實例：TI TPS66994C 以「電壓箝位 (Clamp)」呈現 Rd</h4>
+      <p>實際的 PD 控制器不一定在 CC 上放一顆真的 5.1kΩ 電阻。以 TI TPS66994（B/C 版，2 埠 DRP PD 控制器，datasheet 8.3.5.3 <em>Dead Battery Advertisement</em>）為例，它支援從無電池或電池耗盡的狀態，直接靠 Px_VBUS 供電開機；晶片在沒有供電時，用硬體把 Px_CCy 的電壓<strong>箝位在 V<sub>CLAMP</sub></strong>，讓 CC 呈現的電壓與 Rd 相同，Source 就會當成看到 Rd 而送出 VBUS。</p>
+      <table>
+        <thead>
+          <tr><th>條件（V<sub>VIN_3V3</sub> = 0V，V<sub>Px_VBUS</sub> = 0V）</th><th>Source 的 Rp 電流層級</th><th>V<sub>CLAMP</sub> 最小</th><th>V<sub>CLAMP</sub> 最大</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>64 µA &lt; I<sub>Px_CCy</sub> &lt; 96 µA</td><td>預設 USB（約 80 µA）</td><td>0.25 V</td><td>1.32 V</td></tr>
+          <tr><td>166 µA &lt; I<sub>Px_CCy</sub> &lt; 194 µA</td><td>1.5A（約 180 µA）</td><td>0.65 V</td><td>1.32 V</td></tr>
+          <tr><td>304 µA &lt; I<sub>Px_CCy</sub> &lt; 356 µA</td><td>3A（約 330 µA）</td><td>1.20 V</td><td>2.18 V</td></tr>
+        </tbody>
+      </table>
+      <p>換句話說，箝位電路會隨 Source 灌入的 Rp 電流改變 CC 電壓，效果等同於 5.1kΩ（80 µA × 5.1kΩ ≈ 0.41V、180 µA ≈ 0.92V、330 µA ≈ 1.68V，都落在上表範圍內），同時讓 Source 能依電流層級判斷自己可以宣告的供電能力。資料來源：TI TPS66994 datasheet，上表數值為其 V<sub>CLAMP</sub> 規格。</p>
+
       <h3>三、從沒電到 PD 協商的「接力」流程</h3>
       <ol>
         <li><strong>實體層喚醒：</strong> TCPC 在無電狀態下靠硬體呈現 5.1kΩ Rd，充電器偵測到後輸出 <code>vSafe5V</code> 到 VBUS。</li>
@@ -760,6 +940,96 @@
         <li><strong>電阻切換：</strong> TCPM 下達指令，將 TCPC 從「硬體 Dead Battery Rd」無縫切換成「暫存器控制的 Active Rd」。</li>
         <li><strong>啟動 PD 協議：</strong> 系統已具備運算能力，TCPM 透過 CC 線發送 BMC 訊號，請求 Source Capabilities，並發送 RDO（例如要求 20V/3A）以進入快充狀態。</li>
       </ol>
+
+      <h3>互動動畫：Dead Battery 接力全流程</h3>
+      <p>下面的動畫把上面五個步驟串起來：左邊是支援 Dual Role Power (DRP) 的裝置，CC 會在 Rp 與 Rd 之間週期性切換偵測；右邊是電池耗盡的裝置 (Sink)，只靠硬體 Rd 被偵測。可按「播放」自動演示，或用「上一步／下一步」逐步觀察 VBUS、CC 電壓與各電路方塊的變化。切換上方情境，可對照「沒有 Dead Battery Rd」與「交接空窗」兩種常見失敗。</p>
+      <div class="db-anim" id="db-anim">
+        <div class="db-tabs" role="tablist" aria-label="情境選擇">
+          <button class="db-tab active" data-sc="ok" role="tab">正常流程</button>
+          <button class="db-tab" data-sc="nord" role="tab">失敗：沒有 DB Rd</button>
+          <button class="db-tab" data-sc="gap" role="tab">失敗：交接空窗</button>
+        </div>
+        <svg viewBox="0 0 820 360" role="img" aria-label="Dead Battery 機制動畫：充電器與沒電裝置之間的 VBUS 與 CC 線">
+          <rect x="20" y="40" width="220" height="290" rx="10" fill="#f7fafc" stroke="#a0aec0"/>
+          <text x="130" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#2d3748">DRP 裝置 (如筆電／手機)</text>
+          <rect x="560" y="40" width="240" height="290" rx="10" fill="#f7fafc" stroke="#a0aec0"/>
+          <text x="680" y="30" text-anchor="middle" font-size="15" font-weight="600" fill="#2d3748">裝置 (Sink)・電池 0%</text>
+
+          <!-- DRP 裝置 -->
+          <rect x="30" y="90" width="70" height="40" rx="6" fill="#fff" stroke="#4a5568"/>
+          <text x="65" y="115" text-anchor="middle" font-size="13" fill="#2d3748">5V 電源</text>
+          <path id="db-vbus-a" d="M100 110 H150" stroke="#4a5568" stroke-width="4" fill="none"/>
+          <line id="db-sw" x1="150" y1="110" x2="186" y2="92" stroke="#4a5568" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="150" cy="110" r="4" fill="#4a5568"/><circle cx="190" cy="110" r="4" fill="#4a5568"/>
+          <text x="170" y="145" text-anchor="middle" font-size="12" fill="#718096">VBUS 開關</text>
+          <rect id="db-rp" x="36" y="172" width="74" height="30" rx="6" fill="#fff" stroke="#4a5568"/>
+          <text x="73" y="192" text-anchor="middle" font-size="13" fill="#2d3748">Rp ↑5V</text>
+          <path d="M110 187 H140" stroke="#4a5568" stroke-width="2" fill="none"/>
+          <circle cx="140" cy="187" r="4" fill="#4a5568"/>
+          <rect id="db-rd" x="36" y="258" width="74" height="30" rx="6" fill="#fff" stroke="#4a5568"/>
+          <text x="73" y="278" text-anchor="middle" font-size="13" fill="#2d3748">Rd ↓GND</text>
+          <path d="M110 273 H140" stroke="#4a5568" stroke-width="2" fill="none"/>
+          <circle cx="140" cy="273" r="4" fill="#4a5568"/>
+          <line id="db-pole" x1="200" y1="230" x2="140" y2="187" stroke="#e67e22" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="200" cy="230" r="5" fill="#4a5568"/>
+          <text x="130" y="312" text-anchor="middle" font-size="12" fill="#718096">CC 在 Rp / Rd 間切換 (tDRP)</text>
+          <path d="M200 230 H240" stroke="#4a5568" stroke-width="3" fill="none"/>
+
+          <!-- 排線 -->
+          <path id="db-vbus-b" d="M190 110 H610" stroke="#cbd5e0" stroke-width="5" fill="none"/>
+          <text x="390" y="98" text-anchor="middle" font-size="13" font-weight="600" fill="#4a5568">VBUS</text>
+          <path id="db-cc" d="M240 230 H730" stroke="#718096" stroke-width="3" fill="none"/>
+          <path id="db-bmc" d="M240 230 H600" stroke="#e67e22" stroke-width="6" fill="none" opacity="0"/>
+          <text x="390" y="218" text-anchor="middle" font-size="13" font-weight="600" fill="#4a5568">CC</text>
+          <text id="db-ccv" x="390" y="256" text-anchor="middle" font-size="14" font-weight="600" fill="#2d3748"></text>
+
+          <!-- 裝置 -->
+          <rect id="db-ldo" x="610" y="90" width="70" height="40" rx="6" fill="#edf2f7" stroke="#a0aec0"/>
+          <text x="645" y="115" text-anchor="middle" font-size="13" fill="#2d3748">LDO 3.3V</text>
+          <path id="db-ldo-tcpm" d="M680 110 H700" stroke="#cbd5e0" stroke-width="4" fill="none"/>
+          <rect id="db-tcpm" x="700" y="90" width="90" height="40" rx="6" fill="#edf2f7" stroke="#a0aec0"/>
+          <text x="745" y="115" text-anchor="middle" font-size="13" fill="#2d3748">TCPM / EC</text>
+          <path id="db-i2c" d="M745 130 V170" stroke="#cbd5e0" stroke-width="3" stroke-dasharray="4 4" fill="none"/>
+          <text x="752" y="154" font-size="11" fill="#718096">I2C</text>
+          <rect x="600" y="170" width="190" height="150" rx="8" fill="#fff" stroke="#a0aec0"/>
+          <text x="695" y="188" text-anchor="middle" font-size="13" font-weight="600" fill="#2d3748">TCPC</text>
+
+          <g id="db-hw">
+            <path d="M640 230 V245" stroke="#2c3e50" stroke-width="3" fill="none"/>
+            <rect x="630" y="245" width="20" height="32" fill="#fff" stroke="#2c3e50" stroke-width="2"/>
+            <path d="M640 277 V290 M628 290 H652 M632 295 H648 M636 300 H644" stroke="#2c3e50" stroke-width="2" fill="none"/>
+            <circle cx="640" cy="230" r="4" fill="#2c3e50"/>
+            <text x="640" y="316" text-anchor="middle" font-size="11" fill="#4a5568">DB Rd / Clamp</text>
+          </g>
+          <g id="db-act">
+            <path d="M730 230 V245" stroke="#2c3e50" stroke-width="3" fill="none"/>
+            <rect x="720" y="245" width="20" height="32" fill="#fff" stroke="#2c3e50" stroke-width="2"/>
+            <path d="M730 277 V290 M718 290 H742 M722 295 H738 M726 300 H734" stroke="#2c3e50" stroke-width="2" fill="none"/>
+            <circle cx="730" cy="230" r="4" fill="#2c3e50"/>
+            <text x="730" y="316" text-anchor="middle" font-size="11" fill="#4a5568">暫存器 Rd</text>
+          </g>
+          <path id="db-g-hw" d="M580 230 H640 V245" stroke="#2ecc71" stroke-width="4" stroke-linecap="round" fill="none" opacity="0"/>
+          <path id="db-g-act" d="M580 230 H730 V245" stroke="#2ecc71" stroke-width="4" stroke-linecap="round" fill="none" opacity="0"/>
+          <text x="685" y="266" text-anchor="middle" font-size="11" fill="#718096">5.1kΩ</text>
+        </svg>
+        <div class="db-chips">
+          <span class="db-chip">VBUS：<b id="db-c-vbus">0V</b></span>
+          <span class="db-chip">DRP 的 CC：<b id="db-c-drp"></b></span>
+          <span class="db-chip">Sink 的 Rd：<b id="db-c-rd"></b></span>
+          <span class="db-chip">裝置狀態：<b id="db-c-sys"></b></span>
+        </div>
+        <div class="db-caption" aria-live="polite">
+          <div class="db-step-title" id="db-title"></div>
+          <p class="db-step-desc" id="db-desc"></p>
+        </div>
+        <div class="db-controls">
+          <button class="db-btn" id="db-prev">上一步</button>
+          <button class="db-btn primary" id="db-play">播放</button>
+          <button class="db-btn" id="db-next">下一步</button>
+          <button class="db-btn" id="db-reset">重置</button>
+          <div class="db-dots" id="db-dots"></div>
+        </div>
+      </div>
 
       <div class="qa-box">
         <div class="qa-title">實務觀點：硬體研發的除錯注意事項</div>
@@ -836,6 +1106,14 @@
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td>2026-10-30</td>
+            <td>Chapter 18 補充 TI TPS66994C 以 V<sub>CLAMP</sub> 電壓箝位實現 Dead Battery Rd 的實例與規格表，並同步修正動畫說明；動畫左側由充電器改為 DRP 裝置，CC 以 Rp／Rd 切換偵測，鎖定為 Source 後才供電。</td>
+          </tr>
+          <tr>
+            <td>2026-10-30</td>
+            <td>Chapter 18 新增「Dead Battery 接力全流程」互動動畫（正常流程、沒有 DB Rd、交接空窗三種情境，可逐步或自動播放）。</td>
+          </tr>
           <tr>
             <td>2026-08-25</td>
             <td>抬頭 <code>&lt;h1&gt;</code> 由「USB PD R3.2 V1.2 規範摘要 (融合實務 Q&amp;A)」改為「USB Power Delivery (PD)規範」。</td>
