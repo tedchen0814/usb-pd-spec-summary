@@ -168,6 +168,68 @@
   .db-dot.done { background: #a9cce3; border-color: #a9cce3; }
   .db-dot.cur { background: #2980b9; border-color: #2980b9; }
   @media (prefers-reduced-motion: reduce) { .db-anim .db-flow, .db-anim .db-bmc { animation: none; } }
+  /* Chapter 8 協商流程動畫 */
+  .ng-vbar { height: 8px; background: #e2e8f0; border-radius: 4px; margin-top: 10px; overflow: hidden; }
+  .ng-vfill { height: 100%; width: 25%; background: #f39c12; transition: width 0.7s ease; }
+  .ng-hdr { color: #2980b9; font-size: 0.9rem; margin-top: 6px; }
+  .ng-crc { font-size: 0.9rem; color: #4a5568; margin-left: 8px; cursor: pointer; }
+  .ng-note { font-size: 0.85rem; color: #718096; margin: 10px 0 0; }
+  .ng .ng-row { transition: opacity 0.3s; }
+  /* Chapter 8 PDO／RDO 解碼 */
+  .po { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin: 16px 0 24px; }
+  .po-ex { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .po-ex button { padding: 4px 10px; border: 1px solid #cbd5e0; background: #fff; border-radius: 14px; cursor: pointer; font-size: 0.85rem; color: #4a5568; }
+  .po-ex button.on { background: #2980b9; border-color: #2980b9; color: #fff; }
+  .po-in { font-size: 0.9rem; color: #4a5568; margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .po-in input[type=text], .po-in input:not([type]) { width: 8.5em; font: 600 1rem monospace; padding: 3px 6px; border: 1px solid #cbd5e0; border-radius: 4px; text-transform: uppercase; }
+  .po-in select { padding: 4px 6px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 0.9rem; }
+  .po-note { color: #c0392b; }
+  .po-bar { display: flex; height: 30px; gap: 1px; }
+  .po-seg { border: 2px solid transparent; border-radius: 3px; cursor: pointer; padding: 0; min-width: 0; }
+  .po-seg.sel { border-color: #f1c40f; box-shadow: 0 0 0 2px #f1c40f; }
+  .po-scale { display: flex; justify-content: space-between; font-size: 0.72rem; color: #718096; margin: 2px 0 8px; }
+  .po-sum { background: #e8f5e9; border-left: 4px solid #4caf50; border-radius: 4px; padding: 8px 12px; font-size: 0.95rem; margin-bottom: 8px; }
+  /* Chapter 6 BMC 編碼器 */
+  .bmc { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin: 16px 0 24px; }
+  .bmc-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; font-size: 0.9rem; color: #4a5568; }
+  .bmc-row select { padding: 4px 6px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 0.9rem; }
+  .bmc-row input { font: 600 1rem monospace; padding: 3px 6px; border: 1px solid #cbd5e0; border-radius: 4px; text-transform: uppercase; }
+  #bmc-hdr { width: 5em; }
+  #bmc-do { flex: 1 1 14em; min-width: 10em; }
+  #bmc-ex button { padding: 4px 10px; border: 1px solid #cbd5e0; background: #fff; border-radius: 14px; cursor: pointer; font-size: 0.85rem; color: #4a5568; }
+  #bmc-ex button.on { background: #2980b9; border-color: #2980b9; color: #fff; }
+  .bmc-strip { display: flex; gap: 2px; margin-bottom: 4px; }
+  .bmc-strip button { border: 2px solid transparent; border-radius: 4px; color: #fff; font-size: 0.78rem; padding: 6px 2px; cursor: pointer; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+  .bmc-scroll { overflow-x: auto; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; }
+  .bmc-scroll svg { display: block; }
+  .bmc-scroll svg text { font-family: 'Segoe UI', Tahoma, monospace, sans-serif; }
+  .bmc-sym { margin-top: 10px; font-size: 0.9rem; }
+  .bmc-sym summary { cursor: pointer; color: #2980b9; }
+  .fr svg text { font-family: 'Segoe UI', Tahoma, sans-serif; }
+  .fr .fr-row { transition: opacity 0.3s; }
+  /* Chapter 11 CC 電壓互動 */
+  .cc { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; margin: 16px 0 24px; }
+  .cc-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+  .cc-row .db-tabs { margin: 0; }
+  .cc-lb { min-width: 7.5em; font-size: 0.9rem; color: #4a5568; font-weight: 600; }
+  .cc-row input[type=range] { flex: 1 1 160px; max-width: 320px; }
+  .cc-row b { min-width: 11em; font-size: 0.9rem; color: #2c3e50; }
+  .cc svg { width: 100%; height: auto; display: block; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; margin: 8px 0; }
+  .cc svg text { font-family: 'Segoe UI', Tahoma, sans-serif; }
+  .cc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cc-card { background: #fff; border-left: 4px solid #3498db; border-radius: 4px; padding: 8px 12px; }
+  .cc-card p { margin: 4px 0 0; font-size: 0.93rem; }
+  @media (max-width: 640px) { .cc-grid { grid-template-columns: 1fr; } }
+  .po-tbl { font-size: 0.9rem; margin: 0; }
+  .po-tbl th, .po-tbl td { padding: 6px 8px; }
+  @media (max-width: 640px) { .po-tbl { font-size: 0.82rem; } .po-tbl td:nth-child(3) { font-size: 0.75rem; } }
+  .po-tbl tr { cursor: pointer; }
+  .po-tbl tr.sel td { background: #fff8dc; }
+  .po-tbl td:first-child { white-space: nowrap; border-left: 6px solid var(--c, #a0aec0); font-family: monospace; }
+  .po-tbl td.b { font-family: monospace; }
+  .po-tbl .warn { color: #c0392b; }
+  .po-det { background: #fff; border-left: 4px solid #8e44ad; border-radius: 4px; padding: 8px 12px; margin-top: 8px; min-height: 48px; font-size: 0.93rem; }
+  .po-det b { color: #2c3e50; }
   /* 導覽：分組側邊目錄、搜尋、回到頂端、手機版 */
   :root { --hh: 64px; --toc-w: 290px; }
   .chapter { scroll-margin-top: calc(var(--hh) + 14px); }
@@ -980,10 +1042,41 @@
       <div class="qa-box">
         <div class="qa-title">實務觀點：編碼邏輯與頻率</div>
         <ul>
-          <li><strong>0/1 編碼邏輯 (Transition-Based)：</strong> 邏輯 0 在位元週期中間保持不變；邏輯 1 則在週期中間發生一次電壓跳變。</li>
-          <li><strong>標稱傳輸率與頻率：</strong> 傳輸率為 300 kbps (Bit 週期約 3.33 μs)。波形實際跳變頻率落在 150 kHz ~ 300 kHz。</li>
-          <li><strong>電氣準位：</strong> 驅動高位準 (V_TX_HI) 約 1.125V ~ 1.325V；接收跳變門檻 (V_IX_TH) 約 0.55V ~ 0.75V。</li>
+          <li><strong>0/1 編碼邏輯 (Transition-Based)：</strong> 每個位元週期 (1 UI) 的開頭一定會跳變一次；邏輯 0 在週期中間保持不變，邏輯 1 則在週期中間再跳變一次。</li>
+          <li><strong>標稱傳輸率與頻率：</strong> 傳輸率為 300 kbps（規範允許 270～330 kbps，1 UI 約 3.33 μs，範圍 3.03～3.70 μs）。波形實際跳變頻率落在 150 kHz ~ 300 kHz。</li>
+          <li><strong>電氣準位：</strong> 發送端電壓擺幅 vSwing 為 1.05V ~ 1.2V（標稱 1.125V），上升／下降時間 tRise／tFall 不可超過 300ns；封包之間至少間隔 tInterFrameGap 25μs。接收端則依 Rx Mask 判讀，Mask 中心線依是否正在供電、受電或兩者皆無，分別為 0.6875V、0.4375V、0.5625V。</li>
         </ul>
+      </div>
+
+      <h3>互動工具：把一個 PD 封包編成 BMC 波形</h3>
+      <p>輸入 Message Header 與 Data Object，工具會依規範逐步產生完整的實體層封包：加 CRC-32、每個 nibble 轉成 4b5b 符號、加上 Preamble 與 SOP* K-code 與 EOP，最後畫成 BMC 波形。每個位元週期都可以點選查看，也可以選 Hard Reset 或 Cable Reset 看沒有 payload 的重置訊號。</p>
+      <div class="bmc" id="bmc">
+        <div class="bmc-row">
+          <label for="bmc-sop">傳送對象（SOP*）</label>
+          <select id="bmc-sop">
+            <option value="SOP">SOP（Port ↔ Port）</option>
+            <option value="SOP'">SOP'（Cable Plug）</option>
+            <option value="SOP&quot;">SOP''（Cable Plug）</option>
+            <option value="SOP'_Debug">SOP'_Debug</option>
+            <option value="SOP&quot;_Debug">SOP''_Debug</option>
+            <option value="Hard Reset">Hard Reset（無 payload）</option>
+            <option value="Cable Reset">Cable Reset（無 payload）</option>
+          </select>
+        </div>
+        <div class="bmc-row" id="bmc-ex"></div>
+        <div class="bmc-row bmc-pay" id="bmc-pay">
+          <label for="bmc-hdr">Header 0x</label><input id="bmc-hdr" maxlength="4" spellcheck="false" autocomplete="off">
+          <label for="bmc-do">Data Objects 0x</label><input id="bmc-do" spellcheck="false" autocomplete="off" placeholder="8 位 16 進位，多個用空白分隔">
+          <span class="po-note" id="bmc-note"></span>
+        </div>
+        <div class="bmc-strip" id="bmc-strip" role="group" aria-label="封包區段"></div>
+        <div class="bmc-scroll" id="bmc-scroll"><svg id="bmc-svg" role="img" aria-label="BMC 波形"></svg></div>
+        <div class="po-sum" id="bmc-info"></div>
+        <div class="po-det" id="bmc-det" aria-live="polite">點上方波形裡的任一個位元週期，查看它的值、所屬符號，以及這一格有幾次跳變。</div>
+        <details class="bmc-sym"><summary>展開 4b5b 對照表（逐符號）</summary>
+          <div class="table-wrap"><table class="po-tbl"><thead><tr><th>區段</th><th>來源</th><th>4b</th><th>5b（b4…b0）</th><th>送出順序（b0 先）</th></tr></thead><tbody id="bmc-tb"></tbody></table></div>
+        </details>
+        <p class="ng-note">編碼規則依 USB PD R3.2 V1.2 的 Section 5.3：Preamble 為 64 位元的 0101… 且不做 4b5b；其餘資料（含 CRC）每個 nibble 以 4b5b 編碼，byte 先送低 nibble、每個位元 LSB 先送；SOP*、Reset 與 EOP 是直接使用的 5b K-code。CRC-32 的多項式 04C11DB7h、初值 FFFFFFFFh、結果取補數，並以低位元組先送。波形起始為低準位，封包結尾依規範補上收尾邊緣與釋放為高阻抗（Hi-Z）。這裡只處理一般（非 Extended）訊息的 payload，且不模擬 rise／fall time。</p>
       </div>
     </div>
 
@@ -1057,7 +1150,7 @@
             </tr>
             <tr>
               <td><strong>Spec Rev (規格版本)</strong></td>
-              <td><code>0x00</code>: USB PD 1.0<br><code>0x01</code>: USB PD 2.0<br><code>0x02</code>: USB PD 3.0<br><code>0x03</code>: USB PD 3.1 or above</td>
+              <td><code>00b</code>: Revision 1.0（已棄用，接收端視為 2.0）<br><code>01b</code>: Revision 2.0<br><code>10b</code>: Revision 3.x（3.0／3.1／3.2 共用）<br><code>11b</code>: Reserved</td>
             </tr>
             <tr>
               <td><strong>Cable Plug</strong></td>
@@ -1129,6 +1222,70 @@
         <li><strong>Variable / Battery / Augmented PDO</strong>：涵蓋浮動電壓、電池直供與 PPS/AVS。</li>
         <li><strong>RDO (Request Data Object)</strong>：Sink 藉由 Object Position 指定選擇的 PDO，並設定 Operating Current 與 Capability Mismatch 標籤。</li>
       </ul>
+
+      <h3>互動動畫：PDO／RDO 協商流程</h3>
+      <p>從 Source_Capabilities 到 PS_RDY，看 Source 與 Sink 怎麼一來一往談定電壓，VBUS 又在什麼時候才真的變。下方可切換四種情境：正常協商、被 Reject、被要求 Wait、GoodCRC 遺失重送。</p>
+      <div class="db-anim ng" id="ng">
+        <div class="db-tabs" role="tablist" aria-label="協商情境">
+          <button class="db-tab active" data-sc="ok">正常協商</button>
+          <button class="db-tab" data-sc="reject">被 Reject</button>
+          <button class="db-tab" data-sc="wait">被要求 Wait</button>
+          <button class="db-tab" data-sc="crc">GoodCRC 遺失重送</button>
+        </div>
+        <svg id="ng-svg" viewBox="0 0 720 420" role="img" aria-label="Source 與 Sink 的 PD 協商時序圖"></svg>
+        <div class="ng-vbar" aria-hidden="true"><div class="ng-vfill" id="ng-vfill"></div></div>
+        <div class="db-chips">
+          <span class="db-chip">VBUS：<b id="ng-c-vbus">5V</b></span>
+          <span class="db-chip">合約：<b id="ng-c-ct"></b></span>
+          <span class="db-chip">計時器：<b id="ng-c-tm"></b></span>
+        </div>
+        <div class="db-caption" aria-live="polite">
+          <div class="db-step-title" id="ng-title"></div>
+          <p class="db-step-desc" id="ng-desc"></p>
+          <p class="db-step-desc ng-hdr" id="ng-hdr"></p>
+        </div>
+        <div class="db-controls">
+          <button class="db-btn" id="ng-prev">上一步</button>
+          <button class="db-btn primary" id="ng-play">播放</button>
+          <button class="db-btn" id="ng-next">下一步</button>
+          <button class="db-btn" id="ng-reset">重置</button>
+          <label class="ng-crc"><input type="checkbox" id="ng-crc" checked> 顯示 GoodCRC</label>
+          <div class="db-dots" id="ng-dots"></div>
+        </div>
+        <p class="ng-note">藍色為 Control Message、紫色為 Data Message。每則訊息收到後，接收端都要回 GoodCRC；時間值為規範的典型範圍，實際以規格書為準。封包欄位怎麼解碼，可到 Chapter 7 的互動圖查看。</p>
+      </div>
+
+      <h3>互動工具：PDO／RDO 欄位解碼</h3>
+      <p>PDO 和 RDO 都是 32 bits 的 Data Object。這裡可以載入範例，或貼上自己從 Source_Capabilities／Request 抓到的 8 位 16 進位值，逐欄位看 bit 範圍、原始值和換算後的電壓、電流、功率。PDO 會依 bit 31..30 自動判斷種類；RDO 的格式取決於它指向的是哪一種 PDO，請自行選擇。</p>
+      <div class="po" id="po">
+        <div class="db-tabs" role="tablist" aria-label="PDO 或 RDO">
+          <button class="db-tab active" data-mode="pdo">PDO（Source 的能力宣告）</button>
+          <button class="db-tab" data-mode="rdo">RDO（Sink 的請求）</button>
+        </div>
+        <div class="po-ex" id="po-ex"></div>
+        <div class="po-in">
+          <label for="po-hex">Data Object（16 進位）：0x</label>
+          <input id="po-hex" maxlength="8" spellcheck="false" autocomplete="off">
+          <select id="po-rtype" aria-label="RDO 格式" hidden>
+            <option value="rfix">Fixed／Variable RDO</option>
+            <option value="rbat">Battery RDO</option>
+            <option value="rpps">PPS RDO</option>
+            <option value="ravs">AVS RDO</option>
+          </select>
+          <label class="po-chk" id="po-pos1-l"><input type="checkbox" id="po-pos1"> 這是 Source_Capabilities 的第 1 個 PDO（5V Fixed，含旗標欄位）</label>
+          <span class="po-note" id="po-note"></span>
+        </div>
+        <div class="po-bar" id="po-bar" role="group" aria-label="32 bits 欄位分布"></div>
+        <div class="po-scale"><span>bit 31</span><span>bit 0</span></div>
+        <div class="po-sum" id="po-sum"></div>
+        <div class="table-wrap"><table class="po-tbl">
+          <thead><tr><th>Bit</th><th>欄位</th><th>原始值</th><th>換算</th></tr></thead>
+          <tbody id="po-body"></tbody>
+        </table></div>
+        <div class="po-det" id="po-det" aria-live="polite"></div>
+        <p class="ng-note" id="po-bytes"></p>
+        <p class="ng-note">本工具只解 Source 發出的 PDO（Sink_Capabilities 的 PDO 格式略有不同，例如 5V Fixed PDO 的 bit 28..23）。欄位定義依 USB PD R3.2 V1.2 的 Table 6.6～6.22。RDO 的 Maximum Operating Current／Power 已棄用，規範要求填成和 Operating 一樣。</p>
+      </div>
     </div>
 
     <!-- Chapter 9（原 ch8） -->
@@ -1196,6 +1353,40 @@
           </tr>
         </tbody>
       </table>
+
+      <h3>互動工具：CC 電壓與電流宣告偵測</h3>
+      <p>Source 用 Rp（或電流源）在 CC 上拉，Sink 用 Rd 下拉，CC 腳位的電壓就是兩者分壓的結果。調整下方的 Source 宣告、上拉方式、接在對面的東西，以及電阻偏差，看 CC 電壓落在哪個區間，Sink 與 Source 各會做出什麼判斷。</p>
+      <div class="cc" id="cc">
+        <div class="cc-row"><span class="cc-lb">Source 宣告</span>
+          <div class="db-tabs" id="cc-adv">
+            <button class="db-tab active" data-v="0">Default USB</button>
+            <button class="db-tab" data-v="1">1.5A</button>
+            <button class="db-tab" data-v="2">3.0A</button>
+          </div></div>
+        <div class="cc-row"><span class="cc-lb">上拉方式</span>
+          <div class="db-tabs" id="cc-meth">
+            <button class="db-tab active" data-v="res">電阻上拉到 5V</button>
+            <button class="db-tab" data-v="cur">電流源</button>
+          </div></div>
+        <div class="cc-row"><span class="cc-lb">CC 對面接的是</span>
+          <div class="db-tabs" id="cc-load">
+            <button class="db-tab active" data-v="rd">Sink 的 Rd（5.1kΩ）</button>
+            <button class="db-tab" data-v="clamp">Dead Battery 箝位（1.1V）</button>
+            <button class="db-tab" data-v="ra">線纜的 Ra（1kΩ）</button>
+            <button class="db-tab" data-v="open">什麼都沒接</button>
+          </div></div>
+        <div class="cc-row"><span class="cc-lb" id="cc-l1">Rd 偏差</span>
+          <input type="range" id="cc-s1" min="-20" max="20" step="1" value="0"><b id="cc-v1"></b></div>
+        <div class="cc-row"><span class="cc-lb">Rp 偏差</span>
+          <input type="range" id="cc-s2" min="-20" max="20" step="1" value="0"><b id="cc-v2"></b></div>
+        <svg id="cc-svg" viewBox="0 0 720 168" role="img" aria-label="CC 電壓與 Sink 偵測區間"></svg>
+        <div class="po-sum" id="cc-sum"></div>
+        <div class="cc-grid">
+          <div class="cc-card"><b>Sink 的判斷</b><p id="cc-snk"></p></div>
+          <div class="cc-card"><b>Source 的判斷</b><p id="cc-src"></p></div>
+        </div>
+        <p class="ng-note">Rp 與 Rd 的標稱值取自 USB Type-C Spec R2.4 的 Table 4-27／4-28。色帶是 Table 4-36 的範例：Rd ±10% 時，Sink 用來判讀電流宣告的電壓範圍，各家 Sink 實際的門檻可以不同。這裡以 5V 標稱上拉電壓計算，規格表用的是 4.75～5.5V 的範圍，所以細節數字會略有出入。紫色線段是 Rd ±10%（Ra、箝位為 ±20%）加上 Rp 公差後的電壓範圍。</p>
+      </div>
     </div>
 
     <!-- Chapter 12（原 ch12） -->
@@ -1217,6 +1408,36 @@
           <li><strong>階段二：偏好策略覆蓋 (Try.SRC / Try.SNK)</strong><br>筆電或行動電源可開啟 <em>Try.SRC</em>，若初次碰撞被分配為 Sink，會立刻切斷連接並將 CC 強制拉高 (Rp)，逼迫對方當 Sink。螢幕等配件則可開啟 <em>Try.SNK</em>。</li>
           <li><strong>階段三：協議協商切換 (PR_Swap)</strong><br>建立基礎供電後，若角色不符需求，可透過 PD 協定發送 <code>PR_Swap</code> 無縫交接。</li>
         </ol>
+      </div>
+
+      <h3>互動動畫：DRP 角色決定與 Try.SRC／Try.SNK</h3>
+      <p>兩個 DRP 接在一起時，誰當 Source、誰當 Sink 取決於偶然的相位。Try.SRC／Try.SNK 是 Type-C 規範給 DRP 的「偏好」機制：先照一般流程連上，再主動試探一次能不能換成自己偏好的角色。下方五種情境逐步演示本機（A）與對方（B）的狀態、CC 上的 Rp／Rd，以及 VBUS 什麼時候開、什麼時候斷。</p>
+      <div class="db-anim dr" id="dr">
+        <div class="db-tabs" role="tablist" aria-label="情境選擇">
+          <button class="db-tab active" data-sc="none">兩個 DRP（無 Try）</button>
+          <button class="db-tab" data-sc="trysrc-drp">Try.SRC：對方是 DRP</button>
+          <button class="db-tab" data-sc="trysrc-src">Try.SRC：對方只能當 Source</button>
+          <button class="db-tab" data-sc="trysnk-drp">Try.SNK：對方是 DRP</button>
+          <button class="db-tab" data-sc="trysnk-snk">Try.SNK：對方只能當 Sink</button>
+        </div>
+        <svg id="dr-svg" viewBox="0 0 720 300" role="img" aria-label="本機與對方的 CC 與 VBUS 狀態"></svg>
+        <div class="db-chips" id="dr-path"></div>
+        <div class="db-chips">
+          <span class="db-chip">相關計時器：<b id="dr-tm"></b></span>
+        </div>
+        <div class="db-caption" aria-live="polite">
+          <div class="db-step-title" id="dr-title"></div>
+          <p class="db-step-desc" id="dr-desc"></p>
+        </div>
+        <div class="db-controls">
+          <button class="db-btn" id="dr-prev">上一步</button>
+          <button class="db-btn primary" id="dr-play">播放</button>
+          <button class="db-btn" id="dr-next">下一步</button>
+          <button class="db-btn" id="dr-reset">重置</button>
+          <button class="db-btn" id="dr-flip">換個隨機結果</button>
+          <div class="db-dots" id="dr-dots"></div>
+        </div>
+        <p class="ng-note">狀態名稱與條件依 USB Type-C Spec R2.4 的 Section 4.5.2.2。計時器：tDRP 50～100ms（Source 時間占比 30%～70%）、tDRPTransition ≤1ms、tCCDebounce 100～200ms、tPDDebounce 10～20ms、tTryCCDebounce 10～20ms、tDRPTry 75～150ms、tTryTimeout 550～1100ms。規範規定 Try.SRC 與 Try.SNK 同一時間只能啟用一個，要用哪個由產品自行決定。</p>
       </div>
     </div>
 
@@ -1414,7 +1635,7 @@
       <div class="qa-box">
         <div class="qa-title">實務觀點：硬體研發的除錯注意事項</div>
         <p><strong>Leakage (漏電流) 干擾：</strong> CC 線上的靜電保護元件 (TVS) 或其他並聯元件如果漏電流過大，會改變 5.1kΩ 的等效阻值，導致有些充電器 (Source) 判定失敗而不給電。</p>
-        <p><strong>交接空窗期 (Dead-Battery to Active Transition)：</strong> 當 TCPM 喚醒並準備接管 TCPC 的瞬間，若韌體寫入暫存器的時序沒有處理好，導致 CC 腳位上的 Rd 瞬間消失超過 <code>tCCDebounce</code>（約 10ms~20ms），充電器會誤以為裝置被拔除，瞬間切斷 VBUS，導致系統陷入「開機 → 斷電 → 開機」的無限迴圈。</p>
+        <p><strong>交接空窗期 (Dead-Battery to Active Transition)：</strong> 當 TCPM 喚醒並準備接管 TCPC 的瞬間，若韌體寫入暫存器的時序沒有處理好，導致 CC 腳位上的 Rd 瞬間消失超過 <code>tSRCDisconnect</code>（Source 偵測到 Rd 消失後必須反應的時限，上限約 20ms；不要和 <code>tCCDebounce</code> 混淆，後者是 100~200ms，用在「連接偵測」），充電器會誤以為裝置被拔除，瞬間切斷 VBUS，導致系統陷入「開機 → 斷電 → 開機」的無限迴圈。</p>
       </div>
     </div>
 
@@ -1422,16 +1643,42 @@
     <div id="ch19" class="chapter">
       <h2>Chapter 16. Fast Role Swap (FRS) 機制</h2>
       <p><strong>Fast Role Swap (FRS)</strong> 是 USB PD 3.0 引入的關鍵功能，解決的痛點是：當帶有供電能力的集線器 (Hub) 或擴充基座 (Dock) 突然被拔除外部電源時，如何確保連接在上面的裝置（如隨身碟、硬碟）不會因為斷電而導致資料傳輸中斷。</p>
-      <p>傳統的 <code>PR_Swap</code> (Power Role Swap) 由軟體（TCPM 的狀態機）主導交握，耗時長達數十到數百毫秒，VBUS 必定掉電，連帶 Data Role 也跟著中斷重連。FRS 的核心概念是：透過純硬體的實體層訊號，在極短時間內（通常 <span class="highlight">150µs</span> 內）完成供電角色切換，讓原本吃電的裝置 (Sink) 瞬間變成供電的裝置 (Source)，維持 VBUS 在 <code>vSafe5V</code> 不掉電。</p>
+      <p>傳統的 <code>PR_Swap</code> (Power Role Swap) 由軟體（TCPM 的狀態機）主導交握，耗時長達數十到數百毫秒，VBUS 必定掉電，連帶 Data Role 也跟著中斷重連。FRS 的核心概念是：透過純硬體的實體層訊號，讓新的 Source 在極短時間內（<span class="highlight">150µs</span>，即 <code>tSrcFRSwap</code>）接手供應 VBUS，讓原本吃電的裝置 (Sink) 瞬間變成供電的裝置 (Source)，維持 VBUS 在 <code>vSafe5V</code> 不掉電。後續的 FR_Swap、Accept、PS_RDY 訊息再用毫秒級的時間把角色交換補完。</p>
 
       <h3>一、FRS 的硬體觸發機制與時序</h3>
       <p>FRS 的觸發完全繞過冗長的 PD 封包傳遞，直接在 CC (Configuration Channel) 腳位上做文章：</p>
       <ol>
         <li><strong>初始狀態：</strong> 假設筆電目前是 Sink（受電端，吃 Hub 的電），Hub 是 Source（供電端）。</li>
-        <li><strong>Hub 外部斷電 (FRS 觸發)：</strong> Hub 偵測到外部電源被拔除，其 TCPC 會在非常短的時間內將 CC 腳位強制下拉至接地 (&lt; 60mV)，此動作稱為 <strong>Fast Role Swap Signal (FRS Signal)</strong>。</li>
-        <li><strong>筆電端偵測：</strong> 筆電端 TCPC 內部有專用的類比比較器，一旦偵測到 CC 腳位出現這個異常低電位，就判定收到 FRS 訊號。</li>
-        <li><strong>角色互換與供電接手 (150µs 死線)：</strong> 舊的 Source (Hub) 須關閉 VBUS 輸出、開啟 VBUS 消耗路徑準備成為 Sink；新的 Source (筆電) 須在 150µs 內開啟內部的 5V VBUS 供電路徑，接手向 Hub 供電。</li>
+        <li><strong>Hub 外部斷電 (FRS 觸發)：</strong> Hub 偵測到外部電源被拔除，其 TCPC 會立刻以 ≤5Ω 的電阻 (<code>rFRSwapTx</code>) 將 CC 腳位拉低到接地，持續 <code>tFRSwapTx</code>（60～120µs），此動作稱為 <strong>Fast Role Swap Signal (FRS Signal)</strong>。接收端以 <code>vFRSwapCableTx</code>（約 490～550mV）為偵測門檻。</li>
+        <li><strong>筆電端偵測：</strong> 筆電端 TCPC 內部有專用的類比比較器，一旦偵測到 CC 低電位持續達 <code>tFRSwapRx</code>（30～50µs），就判定收到 FRS 訊號。</li>
+        <li><strong>角色互換與供電接手 (150µs 死線)：</strong> 舊的 Source (Hub) 須關閉 VBUS 輸出、開啟 VBUS 消耗路徑準備成為 Sink；新的 Source (筆電) 須在 VBUS 降到 vSafe5V (max) 以下之後的 150µs (<code>tSrcFRSwap</code>) 內，開始以 vSafe5V 供電，接手向 Hub 供電。</li>
       </ol>
+
+      <h3>互動時序圖：FRS 的 µs 硬體區與 ms 訊息區</h3>
+      <p>切換分成兩段：前面幾百 µs 完全靠硬體訊號與電源路徑完成，後面才是毫秒級的 PD 訊息交握。下圖可選兩種起始情況，一步步看每個時間限制從什麼時候開始算、在什麼時候到期。圖中的時間軸只有 µs 區按比例，ms 訊息區與 VBUS 放電的段落是示意。</p>
+      <div class="db-anim fr" id="fr">
+        <div class="db-tabs" role="tablist" aria-label="起始情況">
+          <button class="db-tab active" data-sc="short">VBUS 本來就在 5V</button>
+          <button class="db-tab" data-sc="long">VBUS 從高電壓開始（需放電）</button>
+        </div>
+        <svg id="fr-svg" viewBox="0 0 720 420" role="img" aria-label="FRS 時序圖"></svg>
+        <div class="db-chips">
+          <span class="db-chip">目前時間：<b id="fr-c-t"></b></span>
+          <span class="db-chip">相關限制：<b id="fr-c-tm"></b></span>
+        </div>
+        <div class="db-caption" aria-live="polite">
+          <div class="db-step-title" id="fr-title"></div>
+          <p class="db-step-desc" id="fr-desc"></p>
+        </div>
+        <div class="db-controls">
+          <button class="db-btn" id="fr-prev">上一步</button>
+          <button class="db-btn primary" id="fr-play">播放</button>
+          <button class="db-btn" id="fr-next">下一步</button>
+          <button class="db-btn" id="fr-reset">重置</button>
+          <div class="db-dots" id="fr-dots"></div>
+        </div>
+        <p class="ng-note">數值依 USB PD R3.2 V1.2 的 Chapter 10（Table 10.2）：tFRSwapTx 60～120µs、tFRSwapRx 30～50µs、tSnkFRSwap ≤ 200µs、tSrcFRSwap ≤ 150µs、tFRSwapInit／tFRSwap5V／tFRSwapComplete ≤ 15ms、tFRSResponse ≤ 50ms、iSnkStdby 最大 500mA。</p>
+      </div>
 
       <h3>二、對硬體研發工程師的設計挑戰</h3>
       <h4>1. TCPM 的 I2C 延遲是致命傷</h4>
@@ -1599,6 +1846,30 @@
         <tbody>
           <tr>
             <td>2026-11-03</td>
+            <td>Chapter 13 新增 DRP 角色決定互動動畫：兩個 DRP 的隨機結果，以及 Try.SRC（對方是 DRP、對方只能當 Source）與 Try.SNK（對方是 DRP、對方只能當 Sink）共五種情境，逐步顯示雙方狀態、CC 上的 Rp／Rd 與 VBUS 變化（依 USB Type-C Spec R2.4 Section 4.5.2.2）。</td>
+          </tr>
+          <tr>
+            <td>2026-11-03</td>
+            <td>Chapter 6 新增 BMC 封包編碼互動工具（輸入 Header 與 Data Object，產生 CRC-32、4b5b 符號、Preamble／SOP*／EOP 與 BMC 波形，可選 Hard Reset／Cable Reset）。依規格修正兩處原文：Chapter 6 的發送擺幅改為 vSwing 1.05～1.2V，並補上每個位元週期開頭必跳變的規則；Chapter 7 Header 表的 Spec Revision 改為 00b／01b／10b（Revision 3.x）／11b（Reserved），移除原先「0x03 = 3.1 or above」的錯誤寫法。</td>
+          </tr>
+          <tr>
+            <td>2026-11-03</td>
+            <td>Chapter 16 新增 FRS 互動時序圖（µs 硬體區與 ms 訊息區，含「VBUS 本來就在 5V」與「VBUS 需先放電」兩種起始情況），並依規格 Chapter 10 修正文字：150µs 是 tSrcFRSwap（VBUS 降到 vSafe5V (max) 以下後，新 Source 開始供電的時限），不是整個角色切換的時間；FRS Signal 由 ≤5Ω 拉低 60～120µs（tFRSwapTx），接收端偵測門檻約 490～550mV、偵測時間 30～50µs（tFRSwapRx）。原寫「CC 拉到 &lt; 60mV」與規範不符，已移除。</td>
+          </tr>
+          <tr>
+            <td>2026-11-03</td>
+            <td>Chapter 11 新增 CC 電壓與電流宣告偵測互動工具：選 Source 宣告（Default／1.5A／3.0A）、上拉方式（電阻／電流源）、對面接 Rd／Dead Battery 箝位／Ra／Open，並可調 Rp、Rd 偏差，顯示 CC 電壓、公差範圍，以及 Sink 與 Source 各自的判斷（數值取自 USB Type-C Spec R2.4 Table 4-27／4-28／4-36～4-38）。</td>
+          </tr>
+          <tr>
+            <td>2026-11-03</td>
+            <td>Chapter 8 新增 PDO／RDO 欄位解碼工具：載入範例或貼上 8 位 16 進位值，逐欄位顯示 bit 範圍、原始值與電壓／電流／功率換算，並標出不合規範的值（欄位依 USB PD R3.2 V1.2 Table 6.6～6.22）；動畫中 iSnkStdby 補上最大 500mA。</td>
+          </tr>
+          <tr>
+            <td>2026-11-03</td>
+            <td>Chapter 8 新增 PDO／RDO 協商流程互動動畫（正常協商、Reject、Wait、GoodCRC 遺失重送四種情境）；Chapter 15 的交接空窗期說明改正：Rd 消失的反應時限是 tSRCDisconnect（約 20ms），tCCDebounce（100~200ms）是連接偵測用，原文誤把兩者混用。</td>
+          </tr>
+          <tr>
+            <td>2026-11-03</td>
             <td>Chapter 7 的封包結構圖由 188 KB 的內嵌 JPEG 改為互動圖（點選區塊與 Header 欄位逐位元查看，可載入範例或輸入 Header 十六進位值解碼），頁面大小約從 272 KB 降到約 103 KB。</td>
           </tr>
           <tr>
@@ -1630,5 +1901,1099 @@
     </div>
 
   </div>
+<script>
+  /* Chapter 8：PDO／RDO 協商流程動畫 */
+  document.addEventListener("DOMContentLoaded", function () {
+    var root = document.getElementById("ng");
+    if (!root) return;
+    function $(id) { return document.getElementById(id); }
+    var DEF = "5V（Type-C 預設）";
+    var C9 = "9V／3A（Explicit）";
+    var SC = {
+      ok: [
+        { ev: "Type-C 連接完成，Source 供 5V", v: 5, ct: DEF, tm: "Source 每 tTypeCSendSourceCap（100~200ms）送一次 Source_Capabilities",
+          title: "① 連接完成，VBUS 先是 5V",
+          desc: "Source 先在 vSafe5V 供電，CC 的 Rp／Rd 分壓偵測完成。這時只有 Type-C 預設合約，Sink 只能依 Rp 宣告的電流抽電。接著 Source 開始送 Source_Capabilities。" },
+        { m: { f: "src", n: "Source_Capabilities", t: "D" }, v: 5, ct: DEF, tm: "Sink 等待上限 tTypeCSinkWaitCap（310~620ms）",
+          title: "② Source 宣告能力",
+          desc: "Source 把供電能力列成 PDO 清單，第一個一定是 5V Fixed PDO。本例的 4 個 PDO 為 5V／3A、9V／3A、15V／3A、20V／3A。",
+          hdr: "Data Message · Number of Data Objects = 4 · 每個 PDO 32 bits" },
+        { m: { f: "snk", n: "Request", t: "D" }, v: 5, ct: DEF, tm: "Sink 等回覆上限 tSenderResponse（24~30ms）",
+          title: "③ Sink 提出 RDO",
+          desc: "Sink 挑一個 PDO，填成 RDO：Object Position = 3（15V）、Operating Current 3A、Max Operating Current 3A。",
+          hdr: "Data Message · Number of Data Objects = 1 · RDO 32 bits" },
+        { m: { f: "src", n: "Accept", t: "C" }, v: 5, ct: DEF, tm: "Sink 等 PS_RDY 上限 tPSTransition（450~550ms）",
+          title: "④ Source 接受",
+          desc: "Source 確認能滿足，回 Accept。注意 VBUS 這時還沒變，仍是 5V。",
+          hdr: "Control Message · Number of Data Objects = 0" },
+        { ev: "Source 把 VBUS 升到 15V，Sink 進入 Standby", v: 15, ct: DEF, tm: "Sink 耗電需降到 iSnkStdby（≤ 500mA）以下",
+          title: "⑤ 電壓轉換中",
+          desc: "Source 調整電源輸出，VBUS 由 5V 升到 15V。這段時間 Sink 必須把耗電降到 iSnkStdby（≤ 500mA）以下，讓電壓平順轉換。" },
+        { m: { f: "src", n: "PS_RDY", t: "C" }, v: 15, ct: "15V／3A（Explicit）", tm: "—",
+          title: "⑥ PS_RDY，協商完成",
+          desc: "電壓穩定後 Source 送 PS_RDY，Explicit Contract 成立，Sink 才可以依合約抽電。",
+          hdr: "Control Message · Number of Data Objects = 0" }
+      ],
+      reject: [
+        { ev: "已有 9V／3A 合約，Sink 想再多要一點", v: 9, ct: C9, tm: "—",
+          title: "① 起點：已有 Explicit Contract",
+          desc: "本情境從已經協商好 9V／3A 的狀態開始。Sink 發現需要更高功率，準備重新送一次 Request。" },
+        { m: { f: "snk", n: "Request", t: "D" }, v: 9, ct: C9, tm: "Sink 等回覆上限 tSenderResponse（24~30ms）",
+          title: "② Sink 要求超出能力的功率",
+          desc: "Sink 的 RDO 指向 Object Position 4（20V），Operating Current 填 5A，已超過這個 PDO 宣告的 3A。",
+          hdr: "Data Message · Number of Data Objects = 1 · RDO 32 bits" },
+        { m: { f: "src", n: "Reject", t: "C" }, v: 9, ct: C9, tm: "—",
+          title: "③ Source 回 Reject",
+          desc: "Source 無法滿足，回 Reject。VBUS 不會動。",
+          hdr: "Control Message · Number of Data Objects = 0" },
+        { ev: "維持 9V／3A，Sink 回到 Ready", v: 9, ct: C9, tm: "—",
+          title: "④ 原合約不變",
+          desc: "因為先前已有 Explicit Contract，被 Reject 後原合約照舊，Sink 之後可以改送別的 Request。若是剛連上、還沒有 Explicit Contract 就被 Reject，Sink 會回到等待新的 Source_Capabilities，沿用 5V 預設供電。" }
+      ],
+      wait: [
+        { ev: "已有 9V／3A 合約，Sink 想升到 15V", v: 9, ct: C9, tm: "—",
+          title: "① 起點：已有 Explicit Contract",
+          desc: "從 9V／3A 的狀態開始，Sink 想升到 15V。" },
+        { m: { f: "snk", n: "Request", t: "D" }, v: 9, ct: C9, tm: "Sink 等回覆上限 tSenderResponse（24~30ms）",
+          title: "② Sink 要求 15V",
+          desc: "Sink 送出 RDO，Object Position = 3（15V）、Operating Current 3A。",
+          hdr: "Data Message · Number of Data Objects = 1 · RDO 32 bits" },
+        { m: { f: "src", n: "Wait", t: "C" }, v: 9, ct: C9, tm: "Sink 需等 tSinkRequest（100ms）才能重送",
+          title: "③ Source 暫時不方便，回 Wait",
+          desc: "Source 現在能力足夠，只是暫時無法切換，例如正在處理別的埠、過溫或電池電量低。Wait 的意思是「稍後再來」，和 Reject 的「不行」不同。",
+          hdr: "Control Message · Number of Data Objects = 0" },
+        { ev: "Sink 等待 tSinkRequest（100ms）", v: 9, ct: C9, tm: "tSinkRequest ≥ 100ms",
+          title: "④ Sink 先等一下",
+          desc: "Sink 必須等滿 tSinkRequest 才可以重送 Request，避免不斷追問、塞滿通道。這段時間仍維持 9V／3A。" },
+        { m: { f: "snk", n: "Request", t: "D" }, v: 9, ct: C9, tm: "Sink 等回覆上限 tSenderResponse（24~30ms）",
+          title: "⑤ 重送 Request",
+          desc: "內容和第一次相同，Object Position = 3（15V）。",
+          hdr: "Data Message · Number of Data Objects = 1 · RDO 32 bits" },
+        { m: { f: "src", n: "Accept", t: "C" }, v: 9, ct: C9, tm: "Sink 等 PS_RDY 上限 tPSTransition（450~550ms）",
+          title: "⑥ 這次 Source 接受",
+          desc: "Source 回 Accept，準備把 VBUS 升到 15V。",
+          hdr: "Control Message · Number of Data Objects = 0" },
+        { ev: "Source 把 VBUS 升到 15V", v: 15, ct: C9, tm: "Sink 耗電需降到 iSnkStdby（≤ 500mA）以下",
+          title: "⑦ 電壓轉換中",
+          desc: "VBUS 從 9V 升到 15V，Sink 在這段時間進入 Standby。" },
+        { m: { f: "src", n: "PS_RDY", t: "C" }, v: 15, ct: "15V／3A（Explicit）", tm: "—",
+          title: "⑧ PS_RDY，協商完成",
+          desc: "電壓穩定，Source 送 PS_RDY，新合約成立。",
+          hdr: "Control Message · Number of Data Objects = 0" }
+      ],
+      crc: [
+        { ev: "Type-C 連接完成，Source 供 5V", v: 5, ct: DEF, tm: "—",
+          title: "① 連接完成",
+          desc: "Source 準備送出第一則 Source_Capabilities。" },
+        { m: { f: "src", n: "Source_Capabilities", t: "D", x: true }, v: 5, ct: DEF, tm: "tReceive（0.9~1.1ms）內沒收到 GoodCRC 就算失敗",
+          title: "② 等不到 GoodCRC",
+          desc: "Source 送出訊息後，在 tReceive 內沒有等到 GoodCRC。原因可能是雜訊讓封包 CRC 錯誤，或是 GoodCRC 本身在途中遺失。對 Source 來說兩者看起來一樣：對方沒確認。",
+          hdr: "沒有 GoodCRC，這則訊息視為沒有送達" },
+        { m: { f: "src", n: "Source_Capabilities（重送）", t: "D" }, v: 5, ct: DEF, tm: "重送上限 nRetryCount（PD 3.x 為 2 次）",
+          title: "③ 重送同一則訊息",
+          desc: "Source 重送，MessageID 保持不變，這樣如果 Sink 其實已經收到第一則，也能認出這是重複的並丟掉。這次有收到 GoodCRC。",
+          hdr: "Data Message · MessageID 與第一次相同" },
+        { ev: "重送成功，之後同「正常協商」", v: 5, ct: DEF, tm: "—",
+          title: "④ 後續照常",
+          desc: "接著 Sink 送 Request、Source 回 Accept、再送 PS_RDY，流程和正常協商相同。如果重送次數用盡仍沒有 GoodCRC，Policy Engine 會進入錯誤恢復，視情況送 Soft_Reset 或 Hard Reset。" }
+      ]
+    };
+    var sc = "ok", idx = 0, timer = null;
+    var X = { src: 120, snk: 600 }, ROW = 60, TOP = 92;
+    var COL = { C: "#2980b9", D: "#8e44ad", crc: "#a0aec0", bad: "#c0392b" };
+    var NS = "http://www.w3.org/2000/svg";
+
+    function mk(c) {
+      return '<marker id="ng-ar-' + c + '" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="' + COL[c] + '"/></marker>';
+    }
+    function draw() {
+      var steps = SC[sc], H = TOP + steps.length * ROW + 6, h = "";
+      var showCrc = $("ng-crc").checked;
+      h += "<defs>" + mk("C") + mk("D") + mk("crc") + mk("bad") + "</defs>";
+      h += '<rect x="30" y="8" width="180" height="40" rx="8" fill="#e8f4fd" stroke="#2980b9"/><text x="120" y="33" text-anchor="middle" font-size="19" font-weight="700" fill="#2c3e50">Source（供電方）</text>';
+      h += '<rect x="510" y="8" width="180" height="40" rx="8" fill="#eafaf1" stroke="#27ae60"/><text x="600" y="33" text-anchor="middle" font-size="19" font-weight="700" fill="#2c3e50">Sink（受電方）</text>';
+      h += '<line x1="120" y1="48" x2="120" y2="' + (H - 4) + '" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="5 5"/>';
+      h += '<line x1="600" y1="48" x2="600" y2="' + (H - 4) + '" stroke="#cbd5e0" stroke-width="2" stroke-dasharray="5 5"/>';
+      for (var i = 0; i <= idx; i++) {
+        var s = steps[i], y = TOP + i * ROW, cur = i === idx, op = cur ? 1 : 0.55, sw = cur ? 3 : 2;
+        h += '<g class="ng-row" opacity="' + op + '">';
+        if (s.m) {
+          var m = s.m, c = m.t, fx = X[m.f], tx = X[m.f === "src" ? "snk" : "src"], dir = tx > fx ? 1 : -1;
+          h += '<line x1="' + fx + '" y1="' + y + '" x2="' + (tx - dir * 2) + '" y2="' + y + '" stroke="' + COL[c] + '" stroke-width="' + sw + '" marker-end="url(#ng-ar-' + c + ')"/>';
+          h += '<text x="360" y="' + (y - 9) + '" text-anchor="middle" font-size="21" font-weight="700" fill="' + COL[c] + '">' + m.n + '</text>';
+          if (showCrc) {
+            if (m.x) {
+              var mid = fx + dir * 250;
+              h += '<line x1="' + tx + '" y1="' + (y + 22) + '" x2="' + (tx - dir * 150) + '" y2="' + (y + 22) + '" stroke="' + COL.bad + '" stroke-width="2" stroke-dasharray="5 4"/>';
+              h += '<text x="' + (tx - dir * 168) + '" y="' + (y + 27) + '" text-anchor="middle" font-size="20" font-weight="700" fill="' + COL.bad + '">✕</text>';
+              h += '<text x="' + (tx - dir * 75) + '" y="' + (y + 17) + '" text-anchor="middle" font-size="15" fill="' + COL.bad + '">GoodCRC 未收到</text>';
+            } else {
+              h += '<line x1="' + tx + '" y1="' + (y + 22) + '" x2="' + (fx + dir * 2) + '" y2="' + (y + 22) + '" stroke="' + COL.crc + '" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#ng-ar-crc)"/>';
+              h += '<text x="360" y="' + (y + 18) + '" text-anchor="middle" font-size="15" fill="#718096">GoodCRC</text>';
+            }
+          } else if (m.x) {
+            h += '<text x="' + (tx - dir * 60) + '" y="' + (y + 20) + '" text-anchor="middle" font-size="15" fill="' + COL.bad + '">✕ 未收到確認</text>';
+          }
+        } else {
+          h += '<rect x="110" y="' + (y - 16) + '" width="500" height="32" rx="16" fill="#fff7e6" stroke="#f39c12" stroke-width="' + (cur ? 2 : 1) + '"/>';
+          h += '<text x="360" y="' + (y + 5) + '" text-anchor="middle" font-size="17" fill="#7a4b00">' + s.ev + '</text>';
+        }
+        h += "</g>";
+      }
+      var svg = $("ng-svg");
+      svg.setAttribute("viewBox", "0 0 720 " + H);
+      svg.innerHTML = h;
+    }
+    function show() {
+      var s = SC[sc][idx], n = SC[sc].length;
+      draw();
+      $("ng-vfill").style.width = (s.v / 20 * 100) + "%";
+      $("ng-c-vbus").textContent = s.v + "V";
+      $("ng-c-ct").textContent = s.ct;
+      $("ng-c-tm").textContent = s.tm;
+      $("ng-title").textContent = s.title;
+      $("ng-desc").textContent = s.desc;
+      $("ng-hdr").textContent = s.hdr ? "封包重點：" + s.hdr : "";
+      var d = $("ng-dots").children;
+      for (var i = 0; i < d.length; i++) d[i].className = "db-dot" + (i === idx ? " cur" : i < idx ? " done" : "");
+      $("ng-prev").disabled = idx === 0;
+      $("ng-next").disabled = idx === n - 1;
+    }
+    function dots() {
+      var b = $("ng-dots"); b.innerHTML = "";
+      SC[sc].forEach(function (_, i) {
+        var e = document.createElement("button");
+        e.className = "db-dot"; e.setAttribute("aria-label", "第 " + (i + 1) + " 步");
+        e.onclick = function () { stop(); idx = i; show(); };
+        b.appendChild(e);
+      });
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } $("ng-play").textContent = "播放"; }
+    function go(k) { sc = k; idx = 0; stop(); dots(); show(); }
+    $("ng-prev").onclick = function () { stop(); if (idx > 0) { idx--; show(); } };
+    $("ng-next").onclick = function () { stop(); if (idx < SC[sc].length - 1) { idx++; show(); } };
+    $("ng-reset").onclick = function () { stop(); idx = 0; show(); };
+    $("ng-crc").onchange = show;
+    $("ng-play").onclick = function () {
+      if (timer) { stop(); return; }
+      if (idx >= SC[sc].length - 1) idx = 0;
+      show();
+      $("ng-play").textContent = "暫停";
+      timer = setInterval(function () {
+        if (idx < SC[sc].length - 1) { idx++; show(); } else stop();
+      }, 2800);
+    };
+    Array.prototype.forEach.call(root.querySelectorAll(".db-tab"), function (t) {
+      t.onclick = function () {
+        Array.prototype.forEach.call(root.querySelectorAll(".db-tab"), function (o) { o.classList.remove("active"); });
+        t.classList.add("active"); go(t.getAttribute("data-sc"));
+      };
+    });
+    go("ok");
+  });
+</script>
+<script>
+  /* Chapter 8：PDO／RDO 欄位解碼（欄位依 USB PD R3.2 V1.2 Table 6.6～6.22） */
+  document.addEventListener("DOMContentLoaded", function () {
+    var root = document.getElementById("po");
+    if (!root) return;
+    function $(id) { return document.getElementById(id); }
+    function num(x, d) { return parseFloat(x.toFixed(d === undefined ? 3 : d)); }
+    function volt(k) { return function (r) { return num(r * k) + " V"; }; }
+    function amp(k) { return function (r) { return num(r * k) + " A"; }; }
+    function watt(k) { return function (r) { return num(r * k) + " W"; }; }
+    function flag(a, b) { return function (r) { return r ? b : a; }; }
+    var RES = "#a0aec0";
+    function res(hi, lo, d) { return { hi: hi, lo: lo, n: "Reserved", c: RES, res: true, d: d || "保留位元，接收端要忽略，傳送端填 0。" }; }
+    var PEAK = function (r) { return ["00b：峰值電流等於 IoC（預設，或查 Source_Capabilities_Extended）", "01b：可短暫過載，最高 150% IoC", "10b：可短暫過載，最高 200% IoC", "11b：可短暫過載，最高 200% IoC（占空比曲線不同）"][r]; };
+    var PEAKD = "Source 可以短時間超過 Operating Current 供電的能力。只用在直接連接的 Port 之間，不可經 Hub 提供給下游。不支援就填 00b。";
+    var T_FIX = { hi: 31, lo: 30, n: "PDO Type", c: "#2c3e50", f: function () { return "00b：Fixed Voltage"; }, d: "PDO 種類：00b Fixed、01b Battery、10b Variable、11b Augmented（APDO）。" };
+
+    var FM = {
+      fix1: { name: "Fixed 5V Source PDO（第 1 個）", fields: [
+        T_FIX,
+        { hi: 29, lo: 29, n: "Dual-Role Power", c: "#2980b9", f: flag("不可 PR_Swap", "可 PR_Swap"), d: "1b 表示這個 Port 可以用 PR_Swap 換電力角色。要和 Sink 端的 5V Fixed PDO 同一位元一致。" },
+        { hi: 28, lo: 28, n: "USB Suspend Supported", c: "#16a085", f: flag("Sink 可不理會 USB Suspend", "Sink 須遵守 USB Suspend／Resume"), d: "1b 表示 Sink 要遵守 USB2／USB3／USB4 的 suspend 與 resume 規則。" },
+        { hi: 27, lo: 27, n: "Unconstrained Power", c: "#27ae60", f: flag("供電受自身用電限制", "有外部電源，供電不受限"), d: "1b 代表 Source 有外部電源可以充分供應自己和外接裝置，例如接市電的充電器。" },
+        { hi: 26, lo: 26, n: "USB Communications Capable", c: "#8e44ad", f: flag("不能走 USB 資料線通訊", "可走 USB 資料線通訊"), d: "這個 Port 能不能透過 USB 資料線通訊。" },
+        { hi: 25, lo: 25, n: "Dual-Role Data", c: "#d35400", f: flag("不可 DR_Swap", "可 DR_Swap"), d: "1b 表示可以用 DR_Swap 換資料角色（DFP／UFP）。" },
+        { hi: 24, lo: 24, n: "Unchunked Ext. Msg", c: "#c0392b", f: flag("不支援 Unchunked Extended Message", "支援 Chunked 與 Unchunked Extended Message"), d: "是否支援不分塊的 Extended Message。" },
+        { hi: 23, lo: 23, n: "EPR Capable", c: "#e67e22", f: flag("只有 SPR 能力", "具備 EPR 能力"), d: "1b 表示 Source 具備 Extended Power Range 能力，EPR Sink 要求時可進入 EPR Mode。" },
+        res(22, 22),
+        { hi: 21, lo: 20, n: "Peak Current", c: "#f39c12", f: PEAK, d: PEAKD },
+        { hi: 19, lo: 10, n: "Voltage", c: "#2980b9", f: volt(0.05), v: function (r) { return r !== 100 ? "第 1 個 PDO 的電壓必須是 5V（值 100）" : ""; }, d: "電壓，單位 50mV。5V Fixed PDO 這欄只能是 100（= 5V），其他值無效。" },
+        { hi: 9, lo: 0, n: "Maximum Current", c: "#27ae60", f: amp(0.01), v: function (r) { return r > 500 ? "超過 500（5A），無效" : ""; }, d: "這個電壓下 Source 最大可供電流，單位 10mA，合法值 0～500（0～5A）。" }
+      ] },
+      fix: { name: "Fixed PDO（> 5V 或非第 1 個）", fields: [
+        T_FIX,
+        { hi: 29, lo: 22, n: "Device Flags", c: RES, res: true, f: function () { return "接收端忽略"; }, d: "這 8 個位元只有第 1 個 5V Fixed PDO 才有旗標意義，其他位置的 Fixed PDO 要忽略它。" },
+        { hi: 21, lo: 20, n: "Peak Current", c: "#f39c12", f: PEAK, d: PEAKD },
+        { hi: 19, lo: 10, n: "Voltage", c: "#2980b9", f: volt(0.05), d: "電壓，單位 50mV。允許的電壓檔位受 Power Rules 限制（見規格 Section 3.2.4／3.2.5）。" },
+        { hi: 9, lo: 0, n: "Maximum Current", c: "#27ae60", f: amp(0.01), v: function (r) { return r > 500 ? "超過 500（5A），無效" : ""; }, d: "最大可供電流，單位 10mA，合法值 0～500（0～5A）。" }
+      ] },
+      bat: { name: "Battery PDO", fields: [
+        { hi: 31, lo: 30, n: "PDO Type", c: "#2c3e50", f: function () { return "01b：Battery"; }, d: "Battery 供電：電壓會隨電池變動，用功率來描述能力。" },
+        { hi: 29, lo: 20, n: "Maximum Voltage", c: "#2980b9", f: volt(0.05), d: "最高電壓，單位 50mV。" },
+        { hi: 19, lo: 10, n: "Minimum Voltage", c: "#16a085", f: volt(0.05), v: null, d: "最低電壓，單位 50mV。" },
+        { hi: 9, lo: 0, n: "Maximum Power", c: "#27ae60", f: watt(0.25), v: function (r) { return r > 400 ? "超過 400（100W），無效" : ""; }, d: "最大功率，單位 250mW，合法值 0～400（0～100W）。注意這欄是功率，不是電流。" }
+      ] },
+      vari: { name: "Variable PDO", fields: [
+        { hi: 31, lo: 30, n: "PDO Type", c: "#2c3e50", f: function () { return "10b：Variable（非 Battery）"; }, d: "Variable 供電：穩壓很差的電源，電壓在一個範圍內浮動。" },
+        { hi: 29, lo: 20, n: "Maximum Voltage", c: "#2980b9", f: volt(0.05), d: "最高電壓，單位 50mV。" },
+        { hi: 19, lo: 10, n: "Minimum Voltage", c: "#16a085", f: volt(0.05), d: "最低電壓，單位 50mV。Source 端這欄不可低於最高電壓的 80%。" },
+        { hi: 9, lo: 0, n: "Maximum Current", c: "#27ae60", f: amp(0.01), v: function (r) { return r > 500 ? "超過 500（5A），無效" : ""; }, d: "這個電壓範圍內的最大電流，單位 10mA，合法值 0～500。" }
+      ] },
+      pps: { name: "SPR PPS APDO", fields: [
+        { hi: 31, lo: 30, n: "PDO Type", c: "#2c3e50", f: function () { return "11b：APDO"; }, d: "11b 代表 Augmented PDO。" },
+        { hi: 29, lo: 28, n: "APDO Type", c: "#34495e", f: function () { return "00b：SPR PPS"; }, d: "APDO 種類：00b PPS、01b EPR AVS、10b SPR AVS、11b 無效。" },
+        { hi: 27, lo: 27, n: "PPS Power Limited", c: "#e67e22", f: flag("不超出額定 PDP", "可在選用區域超出額定 PDP"), d: "1b 時 Source 可以在選用的工作區域供應超過額定 PDP 的功率。" },
+        res(26, 25),
+        { hi: 24, lo: 17, n: "Maximum Voltage", c: "#2980b9", f: volt(0.1), v: function (r) { return [110, 160, 210].indexOf(r) < 0 ? "只允許 110／160／210（11／16／21V）" : ""; }, d: "最高電壓，單位 100mV。合法值只有 11V、16V、21V。" },
+        res(16, 16),
+        { hi: 15, lo: 8, n: "Minimum Voltage", c: "#16a085", f: volt(0.1), v: function (r) { return [33, 50].indexOf(r) < 0 ? "只允許 33（已棄用）或 50（5V）" : ""; }, d: "最低電壓，單位 100mV。合法值 5V；3.3V 已棄用。" },
+        res(7, 7),
+        { hi: 6, lo: 0, n: "Maximum Current", c: "#27ae60", f: amp(0.05), v: function (r) { return r > 100 ? "超過 100（5A），無效" : ""; }, d: "電壓範圍內的最大電流，單位 50mA，合法值 0～100（0～5A）。也是 PPS 的電流限制上限。" }
+      ] },
+      spravs: { name: "SPR AVS APDO", fields: [
+        { hi: 31, lo: 30, n: "PDO Type", c: "#2c3e50", f: function () { return "11b：APDO"; }, d: "11b 代表 Augmented PDO。" },
+        { hi: 29, lo: 28, n: "APDO Type", c: "#34495e", f: function () { return "10b：SPR AVS"; }, d: "APDO 種類：00b PPS、01b EPR AVS、10b SPR AVS、11b 無效。" },
+        { hi: 27, lo: 26, n: "Peak Current", c: "#f39c12", f: PEAK, d: PEAKD },
+        res(25, 20),
+        { hi: 19, lo: 10, n: "Max Current 9–15V", c: "#2980b9", f: amp(0.01), v: function (r) { return r > 500 ? "超過 500（5A），無效" : ""; }, d: "電壓在 9～15V 時的最大電流，單位 10mA。Source 送出時要等於 15V Fixed PDO 的 Maximum Current。" },
+        { hi: 9, lo: 0, n: "Max Current 15–20V", c: "#27ae60", f: amp(0.01), v: function (r) { return r > 500 ? "超過 500（5A），無效" : ""; }, d: "電壓在 15～20V 時的最大電流，單位 10mA。最高電壓只到 15V 時要填 0；否則要等於 20V Fixed PDO 的 Maximum Current。" }
+      ] },
+      eprs: { name: "EPR AVS APDO", fields: [
+        { hi: 31, lo: 30, n: "PDO Type", c: "#2c3e50", f: function () { return "11b：APDO"; }, d: "11b 代表 Augmented PDO。" },
+        { hi: 29, lo: 28, n: "APDO Type", c: "#34495e", f: function () { return "01b：EPR AVS"; }, d: "APDO 種類：00b PPS、01b EPR AVS、10b SPR AVS、11b 無效。" },
+        { hi: 27, lo: 26, n: "Peak Current", c: "#f39c12", f: PEAK, d: PEAKD },
+        { hi: 25, lo: 17, n: "Maximum Voltage", c: "#2980b9", f: volt(0.1), v: function (r) { return [280, 360, 480].indexOf(r) < 0 ? "只允許 280／360／480（28／36／48V）" : ""; }, d: "最高電壓，單位 100mV。合法值 28V、36V、48V。" },
+        res(16, 16),
+        { hi: 15, lo: 8, n: "Minimum Voltage", c: "#16a085", f: volt(0.1), v: function (r) { return r !== 150 ? "只允許 150（15V）" : ""; }, d: "最低電壓，單位 100mV。合法值只有 15V。" },
+        { hi: 7, lo: 0, n: "PDP", c: "#27ae60", f: watt(1), v: function (r) { return r > 240 ? "超過 240（240W），無效" : ""; }, d: "Port 的額定功率 PDP，單位 1W，合法值 0～240W。可用電流 = PDP ÷ 電壓，最多 5A。" }
+      ] },
+      apdoBad: { name: "APDO（Type 11b，無效）", fields: [
+        { hi: 31, lo: 30, n: "PDO Type", c: "#2c3e50", f: function () { return "11b：APDO"; }, d: "11b 代表 Augmented PDO。" },
+        { hi: 29, lo: 28, n: "APDO Type", c: "#c0392b", f: function () { return "11b：無效"; }, v: function () { return "APDO Type 11b 無效，接收端要把這個 PDO 視為 Invalid"; }, d: "APDO 種類 11b 不是合法值。" },
+        { hi: 27, lo: 0, n: "APDO Data", c: RES, res: true, f: function () { return "—"; }, d: "APDO 種類無效，這 28 位元不解。" }
+      ] }
+    };
+    var OBJPOS = { hi: 31, lo: 28, n: "Object Position", c: "#2c3e50", f: function (r) {
+      if (r === 0) return "0000b：不指向任何 PDO";
+      if (r <= 7) return "指向 Source_Capabilities 的第 " + r + " 個 PDO（SPR）";
+      if (r <= 11) return "指向 EPR_Source_Capabilities 的第 " + r + " 個 PDO（EPR）";
+      return "無效值";
+    }, v: function (r) { return r === 0 || r > 11 ? "不是有效的 Object Position" : (r > 7 ? "0111b 以上只能出現在 EPR_Request；放在一般 Request 裡，Source 會送 Hard Reset Signaling" : ""); },
+      d: "指出 Sink 要的是 Source_Capabilities 裡的第幾個 PDO，從 1 開始數。0001b～0111b 用於 SPR 的 PDO／APDO；1000b～1011b 只用於 EPR PDO，且只能用 EPR_Request 要求。" };
+    var RCOMMON = [
+      OBJPOS,
+      { hi: 27, lo: 27, n: "Giveback", c: RES, res: true, f: function () { return "已棄用，忽略"; }, d: "Giveback 已棄用，接收端要忽略。" },
+      { hi: 26, lo: 26, n: "Capability Mismatch", c: "#c0392b", f: flag("無", "有：Source 的能力不夠用"), d: "Source 提供的 PDO 無法滿足 Sink 的需求時，Sink 仍要從中選一個有效的 Request，並把這一位設為 1，讓 Source 知道需要更高的能力。沒有不足時一定要是 0。" },
+      { hi: 25, lo: 25, n: "USB Comm. Capable", c: "#8e44ad", f: flag("Sink 不能走 USB 資料線通訊", "Sink 可以走 USB 資料線通訊"), d: "Sink 有沒有 USB 資料線、能不能用 USB2／USB3／USB4 通訊。Source 會用它判斷 USB Suspend 之類的情況。" },
+      { hi: 24, lo: 24, n: "No USB Suspend", c: "#16a085", f: flag("USB Suspend 時可降低耗電", "要求 USB Suspend 時仍維持合約"), d: "1b 代表 Sink 要求在 USB Suspend 期間仍維持 Explicit Contract，常見於要幫電池充電的裝置。" },
+      { hi: 23, lo: 23, n: "Unchunked Ext. Msg", c: "#d35400", f: flag("不支援 Unchunked Extended Message", "支援 Chunked 與 Unchunked Extended Message"), d: "是否支援不分塊的 Extended Message。" },
+      { hi: 22, lo: 22, n: "EPR Capable", c: "#e67e22", f: flag("只消耗 SPR 範圍的能力", "可消耗 EPR 範圍的能力"), d: "1b 表示 Sink 能使用 Extended Power Range，可以要求進入 EPR Mode。" }
+    ];
+    var VMAX = { hi: 9, lo: 0, c: RES, res: true, f: function () { return "已棄用"; } };
+    function rdo(name, tail) { return { name: name, fields: RCOMMON.concat(tail) }; }
+    FM.rfix = rdo("Fixed／Variable RDO", [
+      res(21, 20),
+      { hi: 19, lo: 10, n: "Operating Current", c: "#27ae60", f: amp(0.01), d: "Sink 在這份合約期間會抽的最高電流，單位 10mA，不可超過 Source PDO 的 Maximum Current。需求改變時要重送新的 Request。" },
+      { hi: 9, lo: 0, n: "Max Operating Current", c: RES, res: true, f: function () { return "已棄用"; }, d: "已棄用：傳送端要填成和 Operating Current 相同，接收端忽略。" }
+    ]);
+    FM.rbat = rdo("Battery RDO", [
+      res(21, 20),
+      { hi: 19, lo: 10, n: "Operating Power", c: "#27ae60", f: watt(0.25), d: "Sink 在合約期間會用的最高功率，單位 250mW。" },
+      { hi: 9, lo: 0, n: "Max Operating Power", c: RES, res: true, f: function () { return "已棄用"; }, d: "已棄用：傳送端要填成和 Operating Power 相同，接收端忽略。" }
+    ]);
+    FM.rpps = rdo("PPS RDO", [
+      res(21, 21),
+      { hi: 20, lo: 9, n: "Output Voltage", c: "#2980b9", f: volt(0.02), d: "要求的輸出電壓，單位 20mV，必須落在所選 APDO 的 Minimum～Maximum Voltage 之間。" },
+      res(8, 7),
+      { hi: 6, lo: 0, n: "Operating Current", c: "#27ae60", f: amp(0.05), d: "Sink 會抽的最高電流，單位 50mA，不可超過所選 APDO 的 Maximum Current。" }
+    ]);
+    FM.ravs = rdo("AVS RDO", [
+      res(21, 21),
+      { hi: 20, lo: 9, n: "Output Voltage", c: "#2980b9", f: volt(0.025), v: function (r) { return r & 3 ? "bit 10..9 必須是 00b（電壓步進為 100mV）" : ""; }, d: "要求的輸出電壓，單位 25mV，但 bit 10..9 必須是 00b，所以實際步進是 100mV。必須落在所選 APDO 的電壓範圍內。" },
+      res(8, 7),
+      { hi: 6, lo: 0, n: "Operating Current", c: "#27ae60", f: amp(0.05), d: "Sink 會抽的最高電流，單位 50mA。SPR AVS 不可超過 APDO 的 Maximum Current；EPR AVS 不可超過 PDP ÷ 輸出電壓（向下取整到 50mA）。" }
+    ]);
+
+    function pack(fmt, vals) {
+      var w = 0;
+      FM[fmt].fields.forEach(function (f) { var v = vals[f.hi + ":" + f.lo] || 0; w += v * Math.pow(2, f.lo); });
+      return w;
+    }
+    function P(fmt, v) { return { fmt: fmt, w: pack(fmt, v) }; }
+    var EX = {
+      pdo: [
+        ["5V／3A（第 1 個）", P("fix1", { "27:27": 1, "26:26": 1, "19:10": 100, "9:0": 300 }), true],
+        ["9V／3A Fixed", P("fix", { "19:10": 180, "9:0": 300 })],
+        ["20V／5A Fixed", P("fix", { "19:10": 400, "9:0": 500 })],
+        ["PPS 3.3–11V／3A", P("pps", { "31:30": 3, "24:17": 110, "15:8": 33, "6:0": 60 })],
+        ["PPS 5–21V／5A", P("pps", { "31:30": 3, "24:17": 210, "15:8": 50, "6:0": 100 })],
+        ["Variable 12–15V／3A", P("vari", { "31:30": 2, "29:20": 300, "19:10": 240, "9:0": 300 })],
+        ["Battery 9–15V／36W", P("bat", { "31:30": 1, "29:20": 300, "19:10": 180, "9:0": 144 })],
+        ["SPR AVS 3A／5A", P("spravs", { "31:30": 3, "29:28": 2, "19:10": 300, "9:0": 500 })],
+        ["EPR AVS 15–28V／140W", P("eprs", { "31:30": 3, "29:28": 1, "25:17": 280, "15:8": 150, "7:0": 140 })]
+      ],
+      rdo: [
+        ["Fixed：第 3 個 PDO／3A", P("rfix", { "31:28": 3, "25:25": 1, "19:10": 300, "9:0": 300 })],
+        ["Fixed：第 1 個／Capability Mismatch", P("rfix", { "31:28": 1, "26:26": 1, "25:25": 1, "19:10": 150, "9:0": 150 })],
+        ["PPS：第 4 個／9V／3A", P("rpps", { "31:28": 4, "25:25": 1, "20:9": 450, "6:0": 60 })],
+        ["AVS：第 6 個／12V／3A", P("ravs", { "31:28": 6, "25:25": 1, "20:9": 480, "6:0": 60 })],
+        ["Battery：第 4 個／36W", P("rbat", { "31:28": 4, "19:10": 144, "9:0": 144 })]
+      ]
+    };
+
+    var mode = "pdo", fmt = "fix1", word = 0, sel = -1;
+    function raw(f) { return Math.floor(word / Math.pow(2, f.lo)) % Math.pow(2, f.hi - f.lo + 1); }
+    function bin(r, n) { var s = r.toString(2); while (s.length < n) s = "0" + s; return s; }
+    function detect() {
+      var t = Math.floor(word / Math.pow(2, 30));
+      if (t === 0) return $("po-pos1").checked ? "fix1" : "fix";
+      if (t === 1) return "bat";
+      if (t === 2) return "vari";
+      var a = Math.floor(word / Math.pow(2, 28)) % 4;
+      return a === 0 ? "pps" : a === 1 ? "eprs" : a === 2 ? "spravs" : "apdoBad";
+    }
+    function summary(F) {
+      var g = function (n) { var f = F.fields.filter(function (x) { return x.n === n; })[0]; return f ? raw(f) : 0; };
+      var s = "";
+      switch (fmt) {
+        case "fix1": case "fix": s = "Fixed：" + num(g("Voltage") * 0.05) + " V／" + num(g("Maximum Current") * 0.01) + " A（" + num(g("Voltage") * 0.05 * g("Maximum Current") * 0.01, 2) + " W）"; break;
+        case "bat": s = "Battery：" + num(g("Minimum Voltage") * 0.05) + "～" + num(g("Maximum Voltage") * 0.05) + " V，最大 " + num(g("Maximum Power") * 0.25) + " W"; break;
+        case "vari": s = "Variable：" + num(g("Minimum Voltage") * 0.05) + "～" + num(g("Maximum Voltage") * 0.05) + " V，最大 " + num(g("Maximum Current") * 0.01) + " A"; break;
+        case "pps": s = "PPS：" + num(g("Minimum Voltage") * 0.1) + "～" + num(g("Maximum Voltage") * 0.1) + " V，電流限制最高 " + num(g("Maximum Current") * 0.05) + " A（約 " + num(g("Maximum Voltage") * 0.1 * g("Maximum Current") * 0.05, 1) + " W）"; break;
+        case "spravs": s = "SPR AVS：9～15V 最大 " + num(g("Max Current 9–15V") * 0.01) + " A，15～20V 最大 " + num(g("Max Current 15–20V") * 0.01) + " A"; break;
+        case "eprs": s = "EPR AVS：" + num(g("Minimum Voltage") * 0.1) + "～" + num(g("Maximum Voltage") * 0.1) + " V，PDP " + g("PDP") + " W"; break;
+        case "apdoBad": s = "無效的 APDO"; break;
+        case "rfix": s = "要求第 " + g("Object Position") + " 個 PDO，Operating Current " + num(g("Operating Current") * 0.01) + " A"; break;
+        case "rbat": s = "要求第 " + g("Object Position") + " 個 PDO，Operating Power " + num(g("Operating Power") * 0.25) + " W"; break;
+        case "rpps": s = "要求第 " + g("Object Position") + " 個 PDO，輸出 " + num(g("Output Voltage") * 0.02) + " V／" + num(g("Operating Current") * 0.05) + " A（約 " + num(g("Output Voltage") * 0.02 * g("Operating Current") * 0.05, 1) + " W）"; break;
+        case "ravs": s = "要求第 " + g("Object Position") + " 個 PDO，輸出 " + num(g("Output Voltage") * 0.025) + " V／" + num(g("Operating Current") * 0.05) + " A（約 " + num(g("Output Voltage") * 0.025 * g("Operating Current") * 0.05, 1) + " W）"; break;
+      }
+      return F.name + " → " + s;
+    }
+    function render() {
+      var F = FM[fmt], bar = $("po-bar"), body = $("po-body"), hasWarn = 0;
+      bar.innerHTML = ""; body.innerHTML = "";
+      F.fields.forEach(function (f, i) {
+        var n = f.hi - f.lo + 1, r = raw(f);
+        var b = document.createElement("button");
+        b.className = "po-seg" + (i === sel ? " sel" : ""); b.style.flex = n + " 1 0"; b.style.background = f.c;
+        b.setAttribute("aria-label", f.n + " bit " + f.hi + (n > 1 ? ".." + f.lo : ""));
+        b.onclick = function () { sel = i; render(); };
+        bar.appendChild(b);
+        var warn = f.v ? f.v(r) : "";
+        if (warn) hasWarn++;
+        var tr = document.createElement("tr");
+        if (i === sel) tr.className = "sel";
+        tr.style.setProperty("--c", f.c);
+        var conv = f.f ? f.f(r) : (f.res ? (r ? "不為 0（接收端忽略）" : "0") : String(r));
+        tr.innerHTML = "<td>" + (n > 1 ? f.hi + "…" + f.lo : f.hi) + "</td><td>" + f.n + "</td><td class=\"b\">" + bin(r, n) + "b</td><td>" + conv + (warn ? "<div class=\"warn\">⚠ " + warn + "</div>" : "") + "</td>";
+        tr.onclick = function () { sel = i; render(); };
+        body.appendChild(tr);
+      });
+      $("po-sum").textContent = summary(F);
+      $("po-note").textContent = hasWarn ? "有 " + hasWarn + " 個欄位的值不合規範" : "";
+      var d = $("po-det");
+      if (sel >= 0) {
+        var f = F.fields[sel], n = f.hi - f.lo + 1;
+        d.innerHTML = "<b>" + f.n + "</b>（bit " + (n > 1 ? f.hi + "…" + f.lo : f.hi) + "，共 " + n + " 位元）<br>" + f.d;
+      } else d.textContent = "點上方的色塊或表格列，查看每個欄位的定義。";
+      var h = word.toString(16).toUpperCase(); while (h.length < 8) h = "0" + h;
+      $("po-bytes").textContent = "線上傳輸時，這個 Data Object 的位元組由低到高依序送出：" + [h.slice(6, 8), h.slice(4, 6), h.slice(2, 4), h.slice(0, 2)].join(" ") + "。";
+    }
+    function setWord(w) { word = w; var h = w.toString(16).toUpperCase(); while (h.length < 8) h = "0" + h; $("po-hex").value = h; }
+    function apply() {
+      fmt = mode === "pdo" ? detect() : $("po-rtype").value;
+      render();
+    }
+    function load(e) {
+      setWord(e.w);
+      if (mode === "pdo") $("po-pos1").checked = e.fmt === "fix1";
+      else $("po-rtype").value = e.fmt;
+      sel = -1; apply();
+      Array.prototype.forEach.call($("po-ex").children, function (b) { b.classList.toggle("on", b._e === e); });
+    }
+    function buildEx() {
+      var box = $("po-ex"); box.innerHTML = "";
+      EX[mode].forEach(function (x) {
+        var b = document.createElement("button"); b.textContent = x[0]; b._e = x[1];
+        b.onclick = function () { load(x[1]); };
+        box.appendChild(b);
+      });
+    }
+    function setMode(m) {
+      mode = m;
+      $("po-rtype").hidden = m !== "rdo";
+      $("po-pos1-l").hidden = m !== "pdo";
+      buildEx(); load(EX[m][0][1]);
+    }
+    $("po-hex").oninput = function () {
+      var v = this.value.replace(/[^0-9a-fA-F]/g, "");
+      this.value = v.toUpperCase();
+      if (v.length !== 8) { $("po-note").textContent = "請輸入 8 位 16 進位（32 bits）"; return; }
+      word = parseInt(v, 16); sel = -1;
+      if (mode === "pdo" && (word >>> 30) === 0) $("po-pos1").checked = ((word >>> 10) & 1023) === 100;
+      Array.prototype.forEach.call($("po-ex").children, function (b) { b.classList.remove("on"); });
+      apply();
+    };
+    $("po-pos1").onchange = function () { sel = -1; apply(); };
+    $("po-rtype").onchange = function () { sel = -1; apply(); };
+    Array.prototype.forEach.call(root.querySelectorAll(".db-tab"), function (t) {
+      t.onclick = function () {
+        Array.prototype.forEach.call(root.querySelectorAll(".db-tab"), function (o) { o.classList.remove("active"); });
+        t.classList.add("active"); setMode(t.getAttribute("data-mode"));
+      };
+    });
+    setMode("pdo");
+  });
+</script>
+<script>
+  /* Chapter 11：CC 電壓與電流宣告偵測（數值取自 USB Type-C Spec R2.4 Table 4-27／4-28／4-36／4-37／4-38） */
+  document.addEventListener("DOMContentLoaded", function () {
+    var root = document.getElementById("cc");
+    if (!root) return;
+    function $(id) { return document.getElementById(id); }
+    var ADV = ["Default USB 電源", "1.5A@5V", "3.0A@5V"];
+    var RP = { res: { v: [56, 22, 10], tol: [20, 5, 5], u: "kΩ" }, cur: { v: [80, 180, 330], tol: [20, 8, 8], u: "µA" } };
+    var THR = { res: [[0.144, 0.271], [0.300, 0.712], [0.618, 0.879]], cur: [[0.116, 0.260], [0.234, 0.675], [0.429, 0.879]] };
+    var BANDS = [
+      { lo: 0.277, hi: 0.612, c: "#27ae60", t: "USB" },
+      { lo: 0.746, hi: 1.164, c: "#2980b9", t: "1.5A" },
+      { lo: 1.369, hi: 2.042, c: "#8e44ad", t: "3.0A" }
+    ];
+    var VMAX = 2.6, X0 = 30, XW = 670;
+    var st = { adv: 0, meth: "res", load: "rd" };
+    function px(v) { return X0 + Math.min(v, VMAX) / VMAX * XW; }
+    function f(v) { return (Math.round(v * 1000) / 1000).toFixed(3).replace(/0+$/, "").replace(/\.$/, ""); }
+    function calc(f1, f2) {
+      var m = RP[st.meth], rp = m.v[st.adv] * (1 + f2 / 100);
+      if (st.load === "open") return null;
+      if (st.load === "clamp") return 1.1 * (1 + f1 / 100);
+      var L = (st.load === "rd" ? 5.1 : 1.0) * (1 + f1 / 100);
+      return st.meth === "res" ? 5 * L / (rp + L) : rp * L / 1000;
+    }
+    function range() {
+      var tol = RP[st.meth].tol[st.adv], t1 = st.load === "rd" ? 10 : 20, lo = 9, hi = -9;
+      [-t1, t1].forEach(function (a) { [-tol, tol].forEach(function (b) { var v = calc(a, b); lo = Math.min(lo, v); hi = Math.max(hi, v); }); });
+      return [lo, hi];
+    }
+    function draw(v, r) {
+      var h = "";
+      h += '<rect x="' + px(0.0) + '" y="52" width="' + (px(0.277) - px(0)) + '" height="40" fill="#edf2f7"/>';
+      BANDS.forEach(function (b, i) {
+        h += '<rect x="' + px(b.lo) + '" y="52" width="' + (px(b.hi) - px(b.lo)) + '" height="40" fill="' + b.c + '" opacity="0.85"/>';
+        h += '<text x="' + (px(b.lo) + px(b.hi)) / 2 + '" y="78" text-anchor="middle" font-size="17" font-weight="700" fill="#fff">' + b.t + '</text>';
+        if (i < 2) h += '<rect x="' + px(b.hi) + '" y="52" width="' + (px(BANDS[i + 1].lo) - px(b.hi)) + '" height="40" fill="#e2e8f0"/>';
+      });
+      h += '<rect x="' + px(2.042) + '" y="52" width="' + (px(VMAX) - px(2.042)) + '" height="40" fill="#fdecea"/>';
+      h += '<text x="' + (px(2.042) + px(VMAX)) / 2 + '" y="78" text-anchor="middle" font-size="14" fill="#c0392b">視為未連接</text>';
+      for (var t = 0; t <= 2.5; t += 0.5) {
+        h += '<line x1="' + px(t) + '" y1="92" x2="' + px(t) + '" y2="98" stroke="#718096"/>';
+        h += '<text x="' + px(t) + '" y="114" text-anchor="middle" font-size="14" fill="#4a5568">' + t.toFixed(1) + ' V</text>';
+      }
+      h += '<text x="' + px(0.14) + '" y="46" text-anchor="middle" font-size="13" fill="#718096">低於範圍</text>';
+      if (v === null) {
+        h += '<line x1="' + (X0 + XW) + '" y1="30" x2="' + (X0 + XW) + '" y2="92" stroke="#c0392b" stroke-width="3" stroke-dasharray="5 4"/>';
+        h += '<text x="' + (X0 + XW) + '" y="22" text-anchor="end" font-size="15" font-weight="700" fill="#c0392b">Open：電壓被拉到上拉電壓附近（遠高於 2.6V 以上）</text>';
+      } else {
+        var x = px(v);
+        h += '<line x1="' + x + '" y1="30" x2="' + x + '" y2="92" stroke="#e67e22" stroke-width="3"/>';
+        h += '<path d="M' + (x - 7) + ' 24 L' + (x + 7) + ' 24 L' + x + ' 34 z" fill="#e67e22"/>';
+        var anchor = x > 560 ? "end" : x < 120 ? "start" : "middle";
+        h += '<text x="' + x + '" y="18" text-anchor="' + anchor + '" font-size="16" font-weight="700" fill="#d35400">' + f(v) + ' V</text>';
+        h += '<line x1="' + px(r[0]) + '" y1="132" x2="' + px(r[1]) + '" y2="132" stroke="#8e44ad" stroke-width="7" stroke-linecap="round"/>';
+        h += '<text x="' + (px(r[0]) + px(r[1])) / 2 + '" y="156" text-anchor="middle" font-size="13" fill="#6c3483">公差範圍 ' + f(r[0]) + '～' + f(r[1]) + ' V</text>';
+      }
+      $("cc-svg").innerHTML = h;
+    }
+    function sinkText(v) {
+      if (st.load === "ra") return "這是線纜上的 Ra，對面沒有 Sink，所以沒有 Sink 可以做判斷。";
+      if (st.load === "open") return "對面沒有東西下拉，沒有 Sink 可以做判斷。";
+      if (st.load === "clamp") return "箝位電壓固定在 1.1V 左右，不會隨 Rp 變化，所以 Sink 無法靠電壓分辨 Source 宣告的電流（Table 4-28：箝位無法偵測電流能力）。箝位也會擋住 PD 通訊，要等系統起來後換成 Rd。";
+      var s, i;
+      if (v < 0.277) s = "低於 Default USB 的範圍下限（0.277V），不在可判讀的區間。";
+      else if (v <= 0.612) s = "落在 vRd-USB 區：Default USB 電源（USB 2.0 500mA／USB 3.x 900mA）。";
+      else if (v < 0.746) s = "落在 USB 與 1.5A 之間的門檻縫隙，判讀不穩定。";
+      else if (v <= 1.164) s = "落在 vRd-1.5 區：Source 宣告 1.5A@5V。";
+      else if (v < 1.369) s = "落在 1.5A 與 3.0A 之間的門檻縫隙，判讀不穩定。";
+      else if (v <= 2.042) s = "落在 vRd-3.0 區：Source 宣告 3.0A@5V。";
+      else s = "高於 2.042V，超出 Connect 範圍，Sink 會視為沒有連上 Source。";
+      var d = Number($("cc-s1").value);
+      if (Math.abs(d) > 10) s += " 注意 Rd 偏差超過 ±10%：規格上這種 Rd 不保證能判讀電流宣告（Table 4-28 的 ±20% 項目）。";
+      return s;
+    }
+    function srcText(v) {
+      if (st.load === "open") return "SRC.Open：CC 上沒有 Rd，Source 判定沒有連接，不供應 VBUS（維持 0V）。";
+      var th = THR[st.meth][st.adv], s;
+      if (v < th[0]) s = "電壓 " + f(v) + "V 低於 Ra／Rd 判定區間下限（" + th[0] + "V），判為 Ra";
+      else if (v > th[1]) s = "電壓 " + f(v) + "V 高於 Ra／Rd 判定區間上限（" + th[1] + "V），判為 Rd";
+      else s = "電壓 " + f(v) + "V 落在 Ra／Rd 判定門檻區間（" + th[0] + "～" + th[1] + "V）內，結果取決於 Source 的門檻設計";
+      s += "（目前宣告 " + ADV[st.adv] + "，Table 4-37／4-38）。";
+      if (v > th[1]) s += " 判為 Rd 後，Source 先確認 Rd 維持 tCCDebounce（100～200ms），才進入 Attached.SRC 並開 VBUS。";
+      else if (v < th[0]) s += " 只看到 Ra 代表有線纜但沒有 Sink，Source 不會開 VBUS。";
+      return s;
+    }
+    function render() {
+      var tol = RP[st.meth].tol[st.adv], m = RP[st.meth], nm = st.load === "rd" ? "Rd" : st.load === "ra" ? "Ra" : "箝位電壓";
+      $("cc-s2").min = -tol; $("cc-s2").max = tol;
+      if (Number($("cc-s2").value) > tol) $("cc-s2").value = tol;
+      if (Number($("cc-s2").value) < -tol) $("cc-s2").value = -tol;
+      $("cc-l1").textContent = nm + " 偏差";
+      var show = st.load !== "open";
+      $("cc-s1").parentNode.style.display = show ? "" : "none";
+      var f1 = Number($("cc-s1").value), f2 = Number($("cc-s2").value);
+      var nomL = st.load === "rd" ? "5.1kΩ" : st.load === "ra" ? "1kΩ" : "1.1V";
+      $("cc-v1").textContent = f1 + "%（" + (st.load === "rd" ? f(5.1 * (1 + f1 / 100)) + "kΩ" : st.load === "ra" ? f(1 * (1 + f1 / 100)) + "kΩ" : f(1.1 * (1 + f1 / 100)) + "V") + "）";
+      var rpv = m.v[st.adv] * (1 + f2 / 100);
+      $("cc-v2").textContent = f2 + "%（" + f(rpv) + m.u + "，標稱 " + m.v[st.adv] + m.u + " ±" + tol + "%）";
+      var v = calc(f1, f2), r = v === null ? null : range();
+      draw(v, r);
+      var ld = st.load === "ra" ? "Ra" : "Rd";
+      var how = st.meth === "res" ? "5V × " + ld + " ÷ (Rp + " + ld + ")" : "Ip × " + ld;
+      $("cc-sum").textContent = v === null ? "CC 沒有下拉，電壓接近上拉電壓。" : "CC 電壓 ≈ " + f(v) + " V（" + (st.load === "clamp" ? "箝位電壓" : how) + "）";
+      $("cc-snk").textContent = sinkText(v);
+      $("cc-src").textContent = srcText(v);
+    }
+    function wire(id, key) {
+      Array.prototype.forEach.call($(id).children, function (b) {
+        b.onclick = function () {
+          Array.prototype.forEach.call($(id).children, function (o) { o.classList.remove("active"); });
+          b.classList.add("active");
+          var v = b.getAttribute("data-v"); st[key] = key === "adv" ? Number(v) : v;
+          if (key === "load") { $("cc-s1").value = 0; }
+          render();
+        };
+      });
+    }
+    wire("cc-adv", "adv"); wire("cc-meth", "meth"); wire("cc-load", "load");
+    $("cc-s1").oninput = render; $("cc-s2").oninput = render;
+    render();
+  });
+</script>
+<script>
+  /* Chapter 16：FRS 時序圖（數值取自 USB PD R3.2 V1.2 Chapter 10 Table 10.2、Section 10.4） */
+  document.addEventListener("DOMContentLoaded", function () {
+    var root = document.getElementById("fr");
+    if (!root) return;
+    function $(id) { return document.getElementById(id); }
+    var sc = "short", idx = 0, timer = null;
+    var MSG = [
+      { n: "FR_Swap", s: "筆電送出", tm: "tFRSwapInit ≤15ms" },
+      { n: "Accept", s: "Hub 回覆", tm: "tReceiverResponse ≤15ms" },
+      { n: "PS_RDY", s: "Hub（New Sink）", tm: "tFRSwap5V ≤15ms" },
+      { n: "PS_RDY", s: "筆電（New Source）", tm: "tFRSwapComplete ≤15ms" },
+      { n: "Explicit Contract", s: "重新協商", tm: "" }
+    ];
+    var ROWS = [
+      { id: "r1", y: 52, a: "CC：FRS Signal", b: "tFRSwapTx 60～120µs" },
+      { id: "r2", y: 100, a: "筆電偵測 FRS Signal", b: "tFRSwapRx 30～50µs" },
+      { id: "r3", y: 148, a: "Hub 吸電流（New Sink）", b: "iSnkStdby → iNewFrsSink" },
+      { id: "r4", y: 196, a: "筆電供電（New Source）", b: "tSrcFRSwap ≤150µs" },
+      { id: "r5", y: 244, a: "VBUS", b: "" }
+    ];
+    var S0 = { title: "① 起點：Hub 供電，筆電已準備好", cur: null, hl: [], msg: -1, t: "—", tm: "—",
+      desc: "Hub（Initial Source）正在對筆電（Initial Sink）供電。筆電已完成 FRS 初始化：雙方有 Explicit Contract、筆電讀過 Hub 的 Sink_Capabilities 並看到 5V Fixed PDO 裡的 FRS 電流欄位，同時關掉 Type-C 的斷線偵測。" };
+    var S1 = { title: "② t = 0：Hub 發出 FRS Signal", cur: { s: "L", t: 0 }, hl: ["r1", "r3"], msg: -1, t: "t = 0", tm: "tFRSwapTx 60～120µs",
+      desc: "Hub 偵測到外部電源消失，立刻丟掉待送訊息，用 ≤5Ω（rFRSwapTx）把 CC 拉低 60～120µs。同一時間它停止供應 VBUS，改成吸電流，電流上限是 iSnkStdby（最大 500mA）。" };
+    var S2 = { title: "③ 約 30～50µs：筆電確認收到 FRS Signal", cur: { s: "L", t: 40 }, hl: ["r2"], msg: -1, t: "t ≈ 30～50µs", tm: "tFRSwapRx 30～50µs",
+      desc: "筆電看到 CC 低電位持續達 tFRSwapRx（30～50µs），確認是 FRS Signal。它立刻停止從 VBUS 吸電、丟掉待送訊息，成為 New Source。" };
+    var SL = { title: "④ VBUS 放電中（ms 級）", cur: { s: "G" }, hl: ["r3", "r4", "r5"], msg: -1, t: "數 ms（示意）", tm: "tSafe5V ≤275ms",
+      desc: "這個情況下 VBUS 原本高於 vSafe5V（例如 20V）。Hub（New Sink）要吸足夠的電流，在 tSafe5V（≤275ms）內把 VBUS 放電到 vSafe5V (max) 以下。筆電此時不能供電，只能等 VBUS 掉下來。這段是 ms 級，圖中以斷開表示。" };
+    var S3 = { title: "⑤ VBUS ≤ vSafe5V (max) 後 150µs 內：筆電開始供 5V", cur: { s: "R", t: 150 }, hl: ["r4", "r5"], msg: -1, t: "VBUS ≤ vSafe5V (max) 後 ≤150µs", tm: "tSrcFRSwap ≤150µs",
+      desc: "tSrcFRSwap 從 VBUS ≤ vSafe5V (max) 起算。New Source 必須在 150µs 內開始以 vSafe5V、iNewFrsSink 的電流供電。這段全靠硬體動作，TCPM 透過 I²C 讀寫暫存器是來不及的。" };
+    var S4 = { title: "⑥ 約 200µs：Hub 可以吸到 iNewFrsSink", cur: { s: "R", t: 200 }, hl: ["r3"], msg: -1, t: "約 200µs", tm: "tSnkFRSwap ≤200µs",
+      desc: "tSnkFRSwap（≤200µs）過後，Hub 才可以吸到 iNewFrsSink（Default USB、1.5A 或 3.0A，由 Hub 在 Sink_Capabilities 的 FRS 欄位宣告）。tSnkFRSwap 從「FRS Signal 開始」和「VBUS 低於 vSafe5V (min)」兩者較晚的時間起算。在偵測到筆電的 Rp 之前，Hub 都不能超過 iNewFrsSink。" };
+    var M = [
+      { title: "⑦ 進入訊息階段：筆電送 FR_Swap", msg: 0, t: "數 ms 後", tm: "tFRSwapInit ≤15ms；Hub 端 tFRSResponse ≤50ms",
+        desc: "筆電（New Source）在偵測到 FRS Signal 後 tFRSwapInit（≤15ms）內送出 FR_Swap。Hub 從 FRS Signal 開始算起，要在 tFRSResponse（≤50ms）內收完這則訊息，否則 Hub 進入 ErrorRecovery。" },
+      { title: "⑧ Hub 回 Accept", msg: 1, t: "數 ms 後", tm: "tReceiverResponse ≤15ms",
+        desc: "Hub（New Sink）在 tReceiverResponse（≤15ms）內回 Accept。筆電送出 FR_Swap 後，若在 tSenderResponse（24～30ms）內收不到 Accept，會進入 ErrorRecovery。" },
+      { title: "⑨ Hub 掛上 Rd，送 PS_RDY", msg: 2, t: "數 ms 後", tm: "tFRSwap5V ≤15ms；筆電端 tPSSourceOff 750～920ms",
+        desc: "Hub 收到 Accept 的 GoodCRC，且 VBUS ≤ vSafe5V (max) 後，掛上 Rd，並在 tFRSwap5V（≤15ms）內送 PS_RDY，Port Power Role 欄位設為 Sink。筆電這邊從收到 Accept 起算 PSSourceOffTimer（SPR 為 tPSSourceOff 750～920ms）。" },
+      { title: "⑩ 筆電掛上 Rp，回 PS_RDY", msg: 3, t: "數 ms 後", tm: "tFRSwapComplete ≤15ms",
+        desc: "筆電收到 PS_RDY 後掛上 Rp（Type-C 電流 ≥ iNewFrsSink），並在 tFRSwapComplete（≤15ms）內回 PS_RDY，Port Power Role 欄位設為 Source，接著重新開啟 Type-C 斷線偵測。" },
+      { title: "⑪ 重新建立 Explicit Contract", msg: 4, t: "之後", tm: "—",
+        desc: "雙方進入 Implicit Contract，筆電送 Source_Capabilities（不是 EPR 版本）重新協商。若原本在 EPR Mode，FRS 也會讓它退出。FRS 這整段被視為一個 AMS，期間收到不預期的訊息，雙方都會進入 ErrorRecovery；任何一步遲了，Hub 可能撐不住內部電力而斷電。" }
+    ];
+    M.forEach(function (m) { m.hl = []; m.cur = null; });
+    var STEPS = { short: [S0, S1, S2, S3, S4].concat(M), long: [S0, S1, S2, SL, S3, S4].concat(M) };
+
+    function geo() {
+      if (sc === "short") { var g = { x0: 175, s: 1.8 }; return { L: g, R: g, maxT: 290 }; }
+      return { L: { x0: 175, s: 1.2 }, R: { x0: 385, s: 1.2 }, maxT: 250 };
+    }
+    function bar(x1, x2, y, fill, op, dash, text) {
+      var h = '<rect x="' + x1 + '" y="' + (y - 13) + '" width="' + Math.max(x2 - x1, 1) + '" height="26" rx="3" fill="' + fill + '" opacity="' + (op || 1) + '"' + (dash ? ' stroke="' + dash + '" stroke-width="2" stroke-dasharray="5 4"' : "") + "/>";
+      if (text) h += '<text x="' + (x1 + 6) + '" y="' + (y + 5) + '" font-size="13" fill="#fff" font-weight="700">' + text + "</text>";
+      return h;
+    }
+    function draw() {
+      var g = geo(), st = STEPS[sc][idx], h = "";
+      var xl = function (t) { return g.L.x0 + g.L.s * t; }, xr = function (t) { return g.R.x0 + g.R.s * t; };
+      var long = sc === "long", xEnd = xr(g.maxT);
+      h += '<text x="8" y="20" font-size="15" font-weight="700" fill="#2c3e50">µs 硬體區（按比例）</text>';
+      ROWS.forEach(function (r) {
+        var dim = st.hl.length && st.hl.indexOf(r.id) < 0 ? 0.35 : 1, y = r.y;
+        h += '<g class="fr-row" opacity="' + dim + '">';
+        h += '<text x="8" y="' + (y - 1) + '" font-size="14" font-weight="700" fill="#2d3748">' + r.a + "</text>";
+        if (r.b) h += '<text x="8" y="' + (y + 16) + '" font-size="12" fill="#718096">' + r.b + "</text>";
+        if (r.id === "r1") {
+          h += bar(xl(0), xl(60), y, "#e67e22") + bar(xl(60), xl(120), y, "#f5b041");
+        } else if (r.id === "r2") {
+          h += bar(xl(0), xl(30), y, "#8e44ad") + bar(xl(30), xl(50), y, "#bb8fce");
+        } else if (r.id === "r3") {
+          if (long) h += bar(xl(0), xr(0), y, "#ec7063", 0.45, "#c0392b");
+          h += bar(xr(0), xr(200), y, "#c0392b") + bar(xr(200), xr(g.maxT), y, "#2980b9");
+        } else if (r.id === "r4") {
+          if (long) h += bar(xl(40), xr(0), y, "#cbd5e0", 0.5, "#a0aec0");
+          h += bar(xr(0), xr(150), y, "#d5f5e3", 1, "#27ae60") + bar(xr(150), xr(g.maxT), y, "#27ae60");
+        } else {
+          var y5 = y + 6, yh = y - 10;
+          if (long) h += '<path d="M' + xl(0) + " " + yh + " H" + xl(130) + " L" + xr(0) + " " + y5 + " H" + xEnd + '" fill="none" stroke="#f39c12" stroke-width="4"/>';
+          else h += '<path d="M' + xl(0) + " " + y5 + " H" + xEnd + '" fill="none" stroke="#f39c12" stroke-width="4"/>';
+          h += '<text x="8" y="' + (y + 16) + '" font-size="12" fill="#718096">' + (long ? "VOLD → vSafe5V" : "維持 vSafe5V") + "</text>";
+        }
+        h += "</g>";
+      });
+      h += '<line x1="' + xl(0) + '" y1="278" x2="' + xEnd + '" y2="278" stroke="#718096"/>';
+      var ticks = function (fn, from, to) { for (var t = from; t <= to; t += 50) h += '<line x1="' + fn(t) + '" y1="278" x2="' + fn(t) + '" y2="284" stroke="#718096"/><text x="' + fn(t) + '" y="298" text-anchor="middle" font-size="12" fill="#4a5568">' + t + "</text>"; };
+      if (long) {
+        ticks(xl, 0, 100); ticks(xr, 0, 250);
+        h += '<text x="' + (xl(130) + xr(0)) / 2 + '" y="282" text-anchor="middle" font-size="16" fill="#718096">⋯</text>';
+        h += '<text x="' + xr(0) + '" y="312" text-anchor="middle" font-size="12" fill="#c0392b">0 = VBUS ≤ vSafe5V (max)</text>';
+        h += '<text x="' + xl(0) + '" y="312" text-anchor="start" font-size="12" fill="#c0392b">0 = FRS Signal 開始</text>';
+      } else {
+        ticks(xl, 0, 250);
+        h += '<text x="' + xl(0) + '" y="312" text-anchor="start" font-size="12" fill="#c0392b">0 = FRS Signal 開始（VBUS 已在 vSafe5V）</text>';
+      }
+      h += '<text x="' + (xEnd + 4) + '" y="298" font-size="12" fill="#4a5568">µs</text>';
+      if (st.cur) {
+        var cx = st.cur.s === "L" ? xl(st.cur.t) : st.cur.s === "R" ? xr(st.cur.t) : (xl(130) + xr(0)) / 2;
+        h += '<line x1="' + cx + '" y1="30" x2="' + cx + '" y2="278" stroke="#c0392b" stroke-width="2" stroke-dasharray="6 4"/>';
+        h += '<path d="M' + (cx - 6) + " 24 L" + (cx + 6) + " 24 L" + cx + ' 32 z" fill="#c0392b"/>';
+      }
+      h += '<text x="8" y="334" font-size="15" font-weight="700" fill="#2c3e50">ms 訊息區（示意，不按比例）</text>';
+      MSG.forEach(function (m, i) {
+        var x = 8 + i * 142, on = st.msg === i, done = st.msg > i, op = st.msg < 0 ? 0.4 : 1;
+        h += '<g class="fr-row" opacity="' + op + '"><rect x="' + x + '" y="344" width="132" height="46" rx="6" fill="' + (on ? "#fff3cd" : done ? "#e8f5e9" : "#fff") + '" stroke="' + (on ? "#e67e22" : "#a0aec0") + '" stroke-width="' + (on ? 3 : 1.5) + '"/>';
+        h += '<text x="' + (x + 66) + '" y="365" text-anchor="middle" font-size="14" font-weight="700" fill="#2d3748">' + m.n + '</text><text x="' + (x + 66) + '" y="382" text-anchor="middle" font-size="12" fill="#718096">' + m.s + "</text>";
+        if (m.tm) h += '<text x="' + (x + 66) + '" y="406" text-anchor="middle" font-size="11" fill="#6c3483">' + m.tm + "</text>";
+        h += "</g>";
+      });
+      $("fr-svg").innerHTML = h;
+    }
+    function show() {
+      var st = STEPS[sc][idx], n = STEPS[sc].length;
+      draw();
+      $("fr-c-t").textContent = st.t; $("fr-c-tm").textContent = st.tm;
+      $("fr-title").textContent = String.fromCharCode(0x2460 + idx) + " " + st.title.replace(/^[①-⑳]\s*/, ""); $("fr-desc").textContent = st.desc;
+      var d = $("fr-dots").children;
+      for (var i = 0; i < d.length; i++) d[i].className = "db-dot" + (i === idx ? " cur" : i < idx ? " done" : "");
+      $("fr-prev").disabled = idx === 0; $("fr-next").disabled = idx === n - 1;
+    }
+    function dots() {
+      var b = $("fr-dots"); b.innerHTML = "";
+      STEPS[sc].forEach(function (_, i) {
+        var e = document.createElement("button");
+        e.className = "db-dot"; e.setAttribute("aria-label", "第 " + (i + 1) + " 步");
+        e.onclick = function () { stop(); idx = i; show(); };
+        b.appendChild(e);
+      });
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } $("fr-play").textContent = "播放"; }
+    function go(k) { sc = k; idx = 0; stop(); dots(); show(); }
+    $("fr-prev").onclick = function () { stop(); if (idx > 0) { idx--; show(); } };
+    $("fr-next").onclick = function () { stop(); if (idx < STEPS[sc].length - 1) { idx++; show(); } };
+    $("fr-reset").onclick = function () { stop(); idx = 0; show(); };
+    $("fr-play").onclick = function () {
+      if (timer) { stop(); return; }
+      if (idx >= STEPS[sc].length - 1) idx = 0;
+      show(); $("fr-play").textContent = "暫停";
+      timer = setInterval(function () { if (idx < STEPS[sc].length - 1) { idx++; show(); } else stop(); }, 3200);
+    };
+    Array.prototype.forEach.call(root.querySelectorAll(".db-tab"), function (t) {
+      t.onclick = function () {
+        Array.prototype.forEach.call(root.querySelectorAll(".db-tab"), function (o) { o.classList.remove("active"); });
+        t.classList.add("active"); go(t.getAttribute("data-sc"));
+      };
+    });
+    go("short");
+  });
+</script>
+<script>
+  /* Chapter 6：BMC 封包編碼器（規則依 USB PD R3.2 V1.2 Section 5.3、Table 5.2～5.4） */
+  document.addEventListener("DOMContentLoaded", function () {
+    var root = document.getElementById("bmc");
+    if (!root) return;
+    function $(id) { return document.getElementById(id); }
+    var N5 = ["11110", "01001", "10100", "10101", "01010", "01011", "01110", "01111", "10010", "10011", "10110", "10111", "11010", "11011", "11100", "11101"];
+    var K = { "Sync-1": "11000", "Sync-2": "10001", "Sync-3": "00110", "RST-1": "00111", "RST-2": "11001", "EOP": "01101" };
+    var SOPS = {
+      "SOP": ["Sync-1", "Sync-1", "Sync-1", "Sync-2"], "SOP'": ["Sync-1", "Sync-1", "Sync-3", "Sync-3"], "SOP\"": ["Sync-1", "Sync-3", "Sync-1", "Sync-3"],
+      "SOP'_Debug": ["Sync-1", "RST-2", "RST-2", "Sync-3"], "SOP\"_Debug": ["Sync-1", "RST-2", "Sync-3", "Sync-2"],
+      "Hard Reset": ["RST-1", "RST-1", "RST-1", "RST-2"], "Cable Reset": ["RST-1", "Sync-1", "RST-1", "Sync-3"]
+    };
+    var COLORS = { "Preamble": "#7f8c8d", "SOP*": "#2980b9", "Reset": "#c0392b", "Header": "#8e44ad", "Data Objects": "#16a085", "CRC-32": "#e67e22", "EOP": "#2c3e50" };
+    var EXS = [
+      ["GoodCRC（只有 Header）", "SOP", "0081", ""],
+      ["Source_Capabilities（1 個 PDO）", "SOP", "11A1", "0C01912C"],
+      ["Request（1 個 RDO）", "SOP", "1082", "1204B12C"],
+      ["Hard Reset", "Hard Reset", "", ""],
+      ["Cable Reset", "Cable Reset", "", ""]
+    ];
+    var W = 22, YH = 52, YL = 100, YZ = 76;
+    var model = null, sel = -1;
+
+    function crcReg(bytes) {
+      var c = 0xFFFFFFFF;
+      for (var i = 0; i < bytes.length; i++) {
+        c ^= bytes[i];
+        for (var k = 0; k < 8; k++) c = (c >>> 1) ^ (0xEDB88320 & -(c & 1));
+      }
+      return c >>> 0;
+    }
+    function rev32(v) { var r = 0; for (var i = 0; i < 32; i++) { r = (r << 1) | (v & 1); v >>>= 1; } return r >>> 0; }
+    function hex(n, d) { var s = n.toString(16).toUpperCase(); while (s.length < d) s = "0" + s; return s; }
+
+    function build(sop, hdrTxt, doTxt) {
+      var bits = [], syms = [], segs = [], payload = null, warn = "";
+      function addSeg(name) { segs.push({ name: name, start: bits.length, end: bits.length }); }
+      function closeSeg() { segs[segs.length - 1].end = bits.length; }
+      function pushSym(code, label, src, fourb) {
+        var si = syms.length, seg = segs[segs.length - 1].name;
+        syms.push({ seg: seg, src: src, fourb: fourb, code: code, label: label });
+        for (var i = 4; i >= 0; i--) bits.push({ v: Number(code[i]), seg: seg, sym: si, k: 4 - i });
+      }
+      addSeg("Preamble");
+      for (var p = 0; p < 64; p++) bits.push({ v: p % 2, seg: "Preamble", sym: -1, k: p });
+      closeSeg();
+      var isReset = sop === "Hard Reset" || sop === "Cable Reset";
+      addSeg(isReset ? "Reset" : "SOP*");
+      SOPS[sop].forEach(function (n, i) { pushSym(K[n], n, "K-code " + n, "—"); });
+      closeSeg();
+      if (!isReset) {
+        var h = parseInt(hdrTxt, 16), dos = doTxt.trim() ? doTxt.trim().split(/[\s,]+/) : [];
+        if (hdrTxt.length !== 4 || isNaN(h)) return { err: "請輸入 4 位 16 進位的 Header" };
+        for (var d = 0; d < dos.length; d++) if (!/^[0-9a-fA-F]{8}$/.test(dos[d])) return { err: "每個 Data Object 要是 8 位 16 進位" };
+        if (dos.length > 7) return { err: "一則 Message 最多 7 個 Data Object" };
+        var ndo = (h >> 12) & 7;
+        if (!(h & 0x8000) && ndo !== dos.length) warn = "Header 的 Number of Data Objects 是 " + ndo + "，但輸入了 " + dos.length + " 個 Data Object";
+        var bytes = [h & 255, h >> 8];
+        var segOf = [];
+        dos.forEach(function (x) { var v = parseInt(x, 16); bytes.push(v & 255, (v >>> 8) & 255, (v >>> 16) & 255, (v >>> 24) & 255); });
+        var crc = (~crcReg(bytes)) >>> 0, cb = [crc & 255, (crc >>> 8) & 255, (crc >>> 16) & 255, (crc >>> 24) & 255];
+        var all = bytes.concat(cb), check = crcReg(all);
+        var pieces = [["Header", 0, 2], ["Data Objects", 2, bytes.length], ["CRC-32", bytes.length, all.length]];
+        pieces.forEach(function (pc) {
+          if (pc[1] === pc[2]) return;
+          addSeg(pc[0]);
+          for (var b = pc[1]; b < pc[2]; b++) {
+            var lo = all[b] & 15, hi = all[b] >> 4;
+            pushSym(N5[lo], "0x" + hex(all[b], 2) + " 低", "byte " + b + " = 0x" + hex(all[b], 2) + " 的低 nibble", lo.toString(2).padStart(4, "0"));
+            pushSym(N5[hi], "0x" + hex(all[b], 2) + " 高", "byte " + b + " = 0x" + hex(all[b], 2) + " 的高 nibble", hi.toString(2).padStart(4, "0"));
+          }
+          closeSeg();
+        });
+        payload = { crc: crc, check: check, nbytes: bytes.length };
+      }
+      if (!isReset) { addSeg("EOP"); pushSym(K["EOP"], "EOP", "K-code EOP", "—"); closeSeg(); }
+      return { bits: bits, syms: syms, segs: segs, payload: payload, warn: warn, isReset: isReset };
+    }
+
+    function wave(bits) {
+      var lv = 0, d = "", marks = [];
+      function y(l) { return l ? YH : YL; }
+      for (var i = 0; i < bits.length; i++) {
+        var x0 = i * W;
+        if (i === 0) d += "M" + x0 + " " + y(lv);
+        else { lv ^= 1; d += " L" + x0 + " " + y(lv ^ 1) + " L" + x0 + " " + y(lv); }
+        if (bits[i].v) { d += " L" + (x0 + W / 2) + " " + y(lv); lv ^= 1; d += " L" + (x0 + W / 2) + " " + y(lv); }
+        d += " L" + (x0 + W) + " " + y(lv);
+      }
+      var xe = bits.length * W, tail = "";
+      lv ^= 1;
+      d += " L" + xe + " " + y(lv ^ 1) + " L" + xe + " " + y(lv);
+      if (lv) { d += " L" + (xe + W) + " " + YH + " L" + (xe + W) + " " + YL + " L" + (xe + 2 * W) + " " + YL; tail = "收尾邊緣為低到高：先維持高 1 UI，再拉低 tHoldLowBMC（≥1µs）後釋放"; }
+      else { d += " L" + (xe + W) + " " + YL; tail = "收尾邊緣為高到低：維持低 tHoldLowBMC（≥1µs）後釋放"; }
+      return { d: d, tail: tail, end: lv ? xe + 2 * W : xe + W };
+    }
+
+    function render() {
+      var m = model;
+      if (m.err) { $("bmc-note").textContent = m.err; return; }
+      $("bmc-note").textContent = m.warn;
+      var n = m.bits.length, wv = wave(m.bits), total = n * W + 3 * W;
+      var h = "";
+      m.segs.forEach(function (s) {
+        var c = COLORS[s.name];
+        h += '<rect x="' + s.start * W + '" y="6" width="' + (s.end - s.start) * W + '" height="22" fill="' + c + '" opacity="0.9"/>';
+        h += '<text x="' + (s.start * W + 6) + '" y="22" font-size="13" font-weight="700" fill="#fff">' + s.name + " (" + (s.end - s.start) + " bits)</text>";
+      });
+      for (var i = 0; i < n; i++) {
+        var b = m.bits[i];
+        h += '<line x1="' + i * W + '" y1="34" x2="' + i * W + '" y2="116" stroke="#e2e8f0" stroke-width="1"/>';
+        if (i === sel) h += '<rect x="' + i * W + '" y="34" width="' + W + '" height="82" fill="#fff3cd"/>';
+        h += '<text x="' + (i * W + W / 2) + '" y="132" text-anchor="middle" font-size="13" font-weight="700" fill="' + COLORS[b.seg] + '">' + b.v + "</text>";
+        h += '<rect class="bmc-hit" data-i="' + i + '" x="' + i * W + '" y="34" width="' + W + '" height="104" fill="transparent" style="cursor:pointer"/>';
+      }
+      h += '<line x1="' + (n * W) + '" y1="' + YZ + '" x2="' + (n * W + 3 * W) + '" y2="' + YZ + '" stroke="#a0aec0" stroke-dasharray="4 4"/>';
+      h += '<text x="' + (wv.end + 4) + '" y="' + (YZ + 4) + '" font-size="12" fill="#718096">Hi-Z</text>';
+      h += '<path d="' + wv.d + '" fill="none" stroke="#c0392b" stroke-width="2.5" pointer-events="none"/>';
+      h += '<text x="2" y="' + (YH + 4) + '" font-size="11" fill="#718096" pointer-events="none"></text>';
+      var svg = $("bmc-svg");
+      svg.setAttribute("width", total + 40); svg.setAttribute("height", 142); svg.setAttribute("viewBox", "0 0 " + (total + 40) + " 142");
+      svg.innerHTML = h;
+      Array.prototype.forEach.call(svg.querySelectorAll(".bmc-hit"), function (r) { r.onclick = function () { sel = Number(r.getAttribute("data-i")); render(); detail(); }; });
+      // 區段列
+      var strip = $("bmc-strip"); strip.innerHTML = "";
+      m.segs.forEach(function (s) {
+        var bt = document.createElement("button");
+        bt.style.flex = (s.end - s.start) + " 1 0"; bt.style.background = COLORS[s.name]; bt.textContent = s.name;
+        bt.title = s.name + "：" + (s.end - s.start) + " bits";
+        bt.onclick = function () { $("bmc-scroll").scrollLeft = Math.max(s.start * W - 10, 0); };
+        strip.appendChild(bt);
+      });
+      var us = function (r) { return Math.round(n / r * 1000) / 1000; };
+      var info = "全長 " + n + " bits（一個 bit 週期 = 1 UI），以 300 kbps 計約 " + (Math.round(n / 300 * 1000) / 1) / 1 + " µs；在 270～330 kbps 的範圍內約 " + Math.round(n / 330 * 1000) + "～" + Math.round(n / 270 * 1000) + " µs。" + wv.tail + "。";
+      if (m.payload) info += " CRC-32 = 0x" + hex(m.payload.crc, 8) + "（以 " + hex(m.payload.crc & 255, 2) + " " + hex((m.payload.crc >>> 8) & 255, 2) + " " + hex((m.payload.crc >>> 16) & 255, 2) + " " + hex(m.payload.crc >>> 24, 2) + " 的順序送出）。接收端對「payload + CRC」整串重算，暫存器為 0x" + hex(m.payload.check, 8) + "，位元反向後就是規範寫的殘值 0x" + hex(rev32(m.payload.check), 8) + (rev32(m.payload.check) === 0xC704DD7B ? " ✓" : " ✗") + "。";
+      if (m.isReset) info += " Reset 訊號沒有 payload、CRC 與 EOP，只有 Preamble 加 4 個 K-code。";
+      $("bmc-info").textContent = info;
+      var tb = $("bmc-tb"); tb.innerHTML = "";
+      m.syms.forEach(function (s) {
+        var tr = document.createElement("tr");
+        tr.innerHTML = "<td>" + s.seg + "</td><td>" + s.src + "</td><td class=\"b\">" + s.fourb + "</td><td class=\"b\">" + s.code + "</td><td class=\"b\">" + s.code.split("").reverse().join("") + "</td>";
+        tb.appendChild(tr);
+      });
+    }
+    function detail() {
+      if (sel < 0 || !model.bits[sel]) return;
+      var b = model.bits[sel], t = "第 " + (sel + 1) + " 個位元週期（UI #" + (sel + 1) + "），值 = <b>" + b.v + "</b>，屬於 <b>" + b.seg + "</b>。";
+      if (b.seg === "Preamble") t += " Preamble 是 0 與 1 交替的 64 個位元，不做 4b5b，接收端用它對齊時脈。";
+      else { var s = model.syms[b.sym]; t += " 這是符號「" + s.label + "」（" + s.src + "，5b = " + s.code + "）送出的第 " + (b.k + 1) + " 個位元，每個符號由 b0 先送。"; }
+      t += sel === 0 ? " 第一個位元週期開頭不畫跳變（傳送端從低準位開始，接收端可容忍漏掉第一個邊緣）。" : " 週期開頭有一次跳變。";
+      t += b.v ? " 因為是 1，週期中間再跳一次，所以這一格共 2 次跳變。" : " 因為是 0，週期中間不跳。";
+      $("bmc-det").innerHTML = t;
+    }
+    function update() {
+      sel = -1;
+      model = build($("bmc-sop").value, $("bmc-hdr").value.trim(), $("bmc-do").value);
+      var isReset = $("bmc-sop").value.indexOf("Reset") >= 0;
+      $("bmc-pay").style.display = isReset ? "none" : "";
+      if (model.err) { $("bmc-note").textContent = model.err; return; }
+      render();
+      $("bmc-det").textContent = "點上方波形裡的任一個位元週期，查看它的值、所屬符號，以及這一格有幾次跳變。";
+    }
+    var exBox = $("bmc-ex");
+    EXS.forEach(function (e) {
+      var b = document.createElement("button"); b.textContent = e[0];
+      b.onclick = function () {
+        $("bmc-sop").value = e[1]; $("bmc-hdr").value = e[2]; $("bmc-do").value = e[3];
+        Array.prototype.forEach.call(exBox.children, function (o) { o.classList.toggle("on", o === b); });
+        update();
+      };
+      exBox.appendChild(b);
+    });
+    ["bmc-sop", "bmc-hdr", "bmc-do"].forEach(function (id) {
+      $(id).oninput = function () {
+        if (id !== "bmc-sop") this.value = this.value.replace(/[^0-9a-fA-F\s,]/g, "");
+        Array.prototype.forEach.call(exBox.children, function (o) { o.classList.remove("on"); });
+        update();
+      };
+      $(id).onchange = $(id).oninput;
+    });
+    exBox.children[0].click();
+  });
+</script>
+<script>
+  /* Chapter 13：DRP 角色決定與 Try.SRC／Try.SNK（狀態與條件依 USB Type-C Spec R2.4 Section 4.5.2.2） */
+  document.addEventListener("DOMContentLoaded", function () {
+    var root = document.getElementById("dr");
+    if (!root) return;
+    function $(id) { return document.getElementById(id); }
+    var sc = "none", idx = 0, timer = null, flip = false;
+    var TOG = "Unattached.SNK ⇄ SRC";
+    function D(s, t) { return { s: s, t: t }; }
+
+    function steps() {
+      var T = {
+        none: function () {
+          var srcA = !flip, a = srcA ? "Source" : "Sink";
+          return {
+            names: ["本機 A（DRP）", "對方 B（DRP）"],
+            list: [
+              { A: D(TOG, "tog"), B: D(TOG, "tog"), tm: "tDRP 50～100ms；Source 時間占 30%～70%", title: "兩個 DRP 剛接上",
+                desc: "兩端都在 Rp 與 Rd 之間來回切換（Unattached.SRC 與 Unattached.SNK 輪流），一端呈現 Rp 時，另一端不一定正好呈現 Rd，要等兩邊相位剛好錯開。" },
+              { A: srcA ? D("AttachWait.SRC", "Rp") : D("AttachWait.SNK", "Rd"), B: srcA ? D("AttachWait.SNK", "Rd") : D("AttachWait.SRC", "Rp"), tm: "tDRPTransition ≤1ms", title: "相位錯開：一端 Rp、一端 Rd",
+                desc: "巧合發生時，呈現 Rp 的一端偵測到 Rd，進入 AttachWait.SRC；呈現 Rd 的一端偵測到 Rp，進入 AttachWait.SNK。規範明講兩個 DRP 相接時，本機最後當 Source 還是 Sink 是不確定的。DRP 切換用的時脈也不該來自精準的時序來源，避免兩端永遠同相、永遠卡住。" },
+              { A: srcA ? D("Attached.SRC", "Rp") : D("Attached.SNK", "Rd"), B: srcA ? D("Attached.SNK", "Rd") : D("Attached.SRC", "Rp"), vbus: srcA ? "A" : "B", link: true, tm: "tCCDebounce 100～200ms", title: "去彈跳後連上，VBUS 開啟",
+                desc: "Source 端看到 Rd 持續 tCCDebounce 且 VBUS 在 vSafe0V，才進 Attached.SRC 並開 VBUS；Sink 端看到 Rp 持續 tCCDebounce 並偵測到 VBUS，進入 Attached.SNK。" },
+              { A: srcA ? D("Attached.SRC", "Rp") : D("Attached.SNK", "Rd"), B: srcA ? D("Attached.SNK", "Rd") : D("Attached.SRC", "Rp"), vbus: srcA ? "A" : "B", link: true, tm: "—", title: "結果：本機 A 當 " + a,
+                desc: "這次的結果是本機 A 當 " + a + "。如果你的產品一定要某個角色（例如筆電希望當 Source、螢幕希望當 Sink），就要靠 Try.SRC／Try.SNK 或事後的 PR_Swap。按「換個隨機結果」可以看另一種結果。" }
+            ]
+          };
+        },
+        "trysrc-drp": function () {
+          return {
+            names: ["本機 A（DRP，Try.SRC）", "對方 B（DRP）"],
+            list: [
+              { A: D(TOG, "tog"), B: D(TOG, "tog"), tm: "tDRP 50～100ms", title: "兩個 DRP 剛接上，A 偏好當 Source",
+                desc: "A 啟用了 Try.SRC，也就是偏好當 Source 的 DRP。連接前的行為和一般 DRP 一樣，仍是 Rp／Rd 切換。" },
+              { A: D("AttachWait.SNK", "Rd"), B: D("AttachWait.SRC", "Rp"), tm: "tCCDebounce 100～200ms", title: "碰撞：A 先被分到 Sink",
+                desc: "這次 B 呈現 Rp、A 呈現 Rd：A 偵測到 Rp 進入 AttachWait.SNK，B 偵測到 Rd 進入 AttachWait.SRC。如果沒有 Try.SRC，A 就會變成 Sink。" },
+              { A: D("AttachWait.SNK", "Rd"), B: D("Attached.SRC", "Rp"), vbus: "B", tm: "tCCDebounce 100～200ms", title: "B 開了 VBUS，A 本來要進 Attached.SNK",
+                desc: "A 看到 Rp 持續 tCCDebounce 並偵測到 VBUS，原本會進 Attached.SNK。但偏好 Source 角色的 DRP，規範允許它改進 Try.SRC，再試探一次。" },
+              { A: D("Try.SRC", "Rp"), B: D("Attached.SRC", "Rp"), vbus: "B", tm: "tSRCDisconnect ≤ 約 20ms", title: "A 進入 Try.SRC：Rd 換成 Rp",
+                desc: "A 移除 Rd、改呈現 Rp，並且不驅動 VBUS。B 的 CC 上看不到 Rd 了，偵測到 SRC.Open。" },
+              { A: D("Try.SRC", "Rp"), B: D("Unattached.SNK", "Rd"), tm: "tSRCDisconnect；VBUS 降到 vSafe0V", title: "B 放棄 Source：關 VBUS，改呈現 Rd",
+                desc: "B 在 tSRCDisconnect 內偵測到 SRC.Open。因為 B 是 DRP，回到 Unattached.SNK 並呈現 Rd，VBUS 也跟著關閉。" },
+              { A: D("Attached.SRC", "Rp"), B: D("Attached.SNK", "Rd"), vbus: "A", link: true, tm: "tTryCCDebounce 10～20ms", title: "A 看到 Rd，成為 Source",
+                desc: "A 在 Try.SRC 偵測到 Rd 持續 tTryCCDebounce，進入 Attached.SRC 供電；B 偵測到 Rp 與 VBUS 後進入 Attached.SNK。結果 A 如願當了 Source，代價是 VBUS 中斷了一次，連線也比較慢。" }
+            ]
+          };
+        },
+        "trysrc-src": function () {
+          return {
+            names: ["本機 A（DRP，Try.SRC）", "對方 B（傳統充電器）"],
+            list: [
+              { A: D(TOG, "tog"), B: D("Unattached.SRC", "Rp"), tm: "tDRP 50～100ms", title: "A 偏好 Source，對方卻是傳統充電器",
+                desc: "B 只能當 Source，永遠呈現 Rp。A 是啟用 Try.SRC 的 DRP，仍在 Rp／Rd 之間切換。" },
+              { A: D("AttachWait.SNK", "Rd"), B: D("Attached.SRC", "Rp"), vbus: "B", tm: "tCCDebounce 100～200ms", title: "A 先以 Sink 身分連上，B 開 VBUS",
+                desc: "A 在 Rd 相位看到 Rp，B 看到 Rd 後開 VBUS。A 偵測到 Rp 與 VBUS，本來要進 Attached.SNK，但偏好 Source 的 DRP 改成進 Try.SRC。" },
+              { A: D("Try.SRC", "Rp"), B: D("Attached.SRC", "Rp"), vbus: "B", tm: "tSRCDisconnect ≤ 約 20ms", title: "A 進入 Try.SRC：Rd 換成 Rp",
+                desc: "A 移除 Rd、改呈現 Rp。B 的 CC 上沒有 Rd 了，偵測到 SRC.Open。" },
+              { A: D("Try.SRC", "Rp"), B: D("Unattached.SRC", "Rp"), tm: "VBUS 降到 vSafe0V", title: "B 關閉 VBUS，A 等不到 Rd",
+                desc: "B 在 tSRCDisconnect 內偵測到 SRC.Open，關閉 VBUS，回到 Unattached.SRC。B 只能當 Source，不會呈現 Rd，所以 A 在 Try.SRC 一直看不到 Rd。" },
+              { A: D("TryWait.SNK", "Rd"), B: D("Unattached.SRC", "Rp"), tm: "tDRPTry 75～150ms；最久 tTryTimeout 550～1100ms", title: "等不到 Rd：A 進入 TryWait.SNK",
+                desc: "經過 tDRPTry 且 VBUS 已在 vSafe0V 仍沒偵測到 Rd（或最久過了 tTryTimeout），A 放棄 Source 角色，進入 TryWait.SNK，改呈現 Rd。" },
+              { A: D("Attached.SNK", "Rd"), B: D("Attached.SRC", "Rp"), vbus: "B", link: true, tm: "tCCDebounce 100～200ms", title: "重新連上：A 成為 Sink",
+                desc: "B 重新看到 Rd，經過 tCCDebounce 後再次開 VBUS；A 偵測到 VBUS 後進入 Attached.SNK。結果 A 只能當 Sink。代價是 VBUS 掉電一次、連線時間變長，這就是啟用 Try.SRC 的裝置接傳統充電器時，VBUS 會多一次中斷的原因。" }
+            ]
+          };
+        },
+        "trysnk-drp": function () {
+          return {
+            names: ["本機 A（DRP，Try.SNK）", "對方 B（DRP）"],
+            list: [
+              { A: D(TOG, "tog"), B: D(TOG, "tog"), tm: "tDRP 50～100ms", title: "兩個 DRP 剛接上，A 偏好當 Sink",
+                desc: "A 啟用了 Try.SNK，也就是偏好當 Sink 的 DRP（例如螢幕或配件）。連接前仍是 Rp／Rd 切換。" },
+              { A: D("AttachWait.SRC", "Rp"), B: D("AttachWait.SNK", "Rd"), tm: "tCCDebounce 100～200ms", title: "碰撞：A 先被分到 Source",
+                desc: "這次 A 呈現 Rp、B 呈現 Rd：A 偵測到 Rd 進入 AttachWait.SRC，B 偵測到 Rp 進入 AttachWait.SNK。沒有 Try.SNK 的話，A 就會變成 Source。" },
+              { A: D("Try.SNK", "Rd"), B: D("Unattached.SNK", "Rd"), tm: "tPDDebounce 10～20ms", title: "A 本來要進 Attached.SRC，改進 Try.SNK",
+                desc: "A 偵測到 Rd 持續 tCCDebounce 且 VBUS 在 vSafe0V，原本會進 Attached.SRC 並開 VBUS。偏好 Sink 的 DRP 改進 Try.SNK：改呈現 Rd，還沒開 VBUS。B 的 CC 上沒有 Rp 了。" },
+              { A: D("Try.SNK（先等 tDRPTry）", "Rd"), B: D("Unattached.SRC", "Rp"), tm: "tDRPTry 75～150ms", title: "A 先等 tDRPTry，B 切到 Rp",
+                desc: "A 必須先等 tDRPTry，才開始監看 CC 上有沒有 Rp。這段時間 B 這個 DRP 看到兩支 CC 都是 SNK.Open 持續 tPDDebounce，回到 Unattached.SRC，呈現 Rp。" },
+              { A: D("Attached.SNK", "Rd"), B: D("Attached.SRC", "Rp"), vbus: "B", link: true, tm: "tTryCCDebounce 10～20ms；tCCDebounce 100～200ms", title: "A 看到 Rp，成為 Sink",
+                desc: "A 偵測到 Rp 持續 tTryCCDebounce；B 看到 Rd 持續 tCCDebounce 後開 VBUS；A 偵測到 VBUS，進入 Attached.SNK。結果 A 如願當了 Sink。" }
+            ]
+          };
+        },
+        "trysnk-snk": function () {
+          return {
+            names: ["本機 A（DRP，Try.SNK）", "對方 B（Sink-only）"],
+            list: [
+              { A: D(TOG, "tog"), B: D("Unattached.SNK", "Rd"), tm: "tDRP 50～100ms", title: "A 偏好 Sink，對方卻只能當 Sink",
+                desc: "B 只能當 Sink，永遠呈現 Rd。A 是啟用 Try.SNK 的 DRP，仍在 Rp／Rd 之間切換。" },
+              { A: D("AttachWait.SRC", "Rp"), B: D("Unattached.SNK", "Rd"), tm: "tCCDebounce 100～200ms", title: "A 在 Rp 相位看到 Rd",
+                desc: "A 偵測到 Rd，進入 AttachWait.SRC。這時 VBUS 還是 vSafe0V。" },
+              { A: D("Try.SNK", "Rd"), B: D("Unattached.SNK", "Rd"), tm: "tCCDebounce 100～200ms", title: "A 本來要進 Attached.SRC，改進 Try.SNK",
+                desc: "A 偵測到 Rd 持續 tCCDebounce 且 VBUS 在 vSafe0V，本來要進 Attached.SRC。偏好 Sink 的 DRP 改進 Try.SNK，改呈現 Rd。" },
+              { A: D("Try.SNK（先等 tDRPTry）", "Rd"), B: D("Unattached.SNK", "Rd"), tm: "tDRPTry 75～150ms；tTryCCDebounce 10～20ms", title: "A 等 tDRPTry，再監看 CC：看不到 Rp",
+                desc: "A 先等 tDRPTry 才開始監看 CC。B 是 Sink-only，不會呈現 Rp，所以 A 在 tTryCCDebounce 內都沒偵測到 SNK.Rp。" },
+              { A: D("TryWait.SRC", "Rp"), B: D("Unattached.SNK", "Rd"), tm: "tTryCCDebounce 10～20ms", title: "轉進 TryWait.SRC，改呈現 Rp",
+                desc: "A 沒偵測到 SNK.Rp，進入 TryWait.SRC，行為和 Unattached.SRC 相同：呈現 Rp 等對方出現 Rd。" },
+              { A: D("Attached.SRC", "Rp"), B: D("Attached.SNK", "Rd"), vbus: "A", link: true, tm: "tTryCCDebounce 10～20ms", title: "看到 Rd，A 成為 Source",
+                desc: "A 在 VBUS 為 vSafe0V 時偵測到 Rd 持續 tTryCCDebounce，進入 Attached.SRC 並開 VBUS；B 偵測到 Rp 與 VBUS，進入 Attached.SNK。結果 A 只能當 Source，連線時間比一般路徑多了一段 tDRPTry。" }
+            ]
+          };
+        }
+      };
+      return T[sc]();
+    }
+
+    function term(x, t, side) {
+      var h = "", a = 0.9;
+      var rp = function (op) { return '<g opacity="' + op + '"><line x1="' + x + '" y1="210" x2="' + x + '" y2="186" stroke="#2d3748" stroke-width="2"/><rect x="' + (x - 8) + '" y="152" width="16" height="34" fill="#fdebd0" stroke="#e67e22" stroke-width="2"/><line x1="' + x + '" y1="152" x2="' + x + '" y2="136" stroke="#2d3748" stroke-width="2"/><text x="' + x + '" y="130" text-anchor="middle" font-size="12" fill="#718096">5V</text><text x="' + (x + (side ? -14 : 14)) + '" y="174" text-anchor="' + (side ? "end" : "start") + '" font-size="15" font-weight="700" fill="#d35400">Rp</text></g>'; };
+      var rd = function (op) { return '<g opacity="' + op + '"><line x1="' + x + '" y1="210" x2="' + x + '" y2="234" stroke="#2d3748" stroke-width="2"/><rect x="' + (x - 8) + '" y="234" width="16" height="34" fill="#d6eaf8" stroke="#2980b9" stroke-width="2"/><line x1="' + x + '" y1="268" x2="' + x + '" y2="280" stroke="#2d3748" stroke-width="2"/><line x1="' + (x - 9) + '" y1="280" x2="' + (x + 9) + '" y2="280" stroke="#2d3748" stroke-width="2"/><text x="' + (x + (side ? -14 : 14)) + '" y="256" text-anchor="' + (side ? "end" : "start") + '" font-size="15" font-weight="700" fill="#2471a3">Rd</text></g>'; };
+      if (t === "Rp") h = rp(1); else if (t === "Rd") h = rd(1);
+      else h = rp(0.35) + rd(0.35) + '<text x="' + x + '" y="205" text-anchor="middle" font-size="18" fill="#c0392b" font-weight="700">⇄</text>';
+      return h;
+    }
+
+    function draw() {
+      var S = steps(), st = S.list[idx], h = "";
+      h += '<rect x="10" y="96" width="210" height="188" rx="10" fill="#f4f8fb" stroke="#2980b9" stroke-width="2"/>';
+      h += '<rect x="500" y="96" width="210" height="188" rx="10" fill="#f6fbf7" stroke="#27ae60" stroke-width="2"/>';
+      h += '<text x="115" y="120" text-anchor="middle" font-size="14" font-weight="700" fill="#2c3e50">' + S.names[0] + "</text>";
+      h += '<text x="605" y="120" text-anchor="middle" font-size="14" font-weight="700" fill="#2c3e50">' + S.names[1] + "</text>";
+      var role = function (d, side) {
+        var r = d.s.indexOf("Attached.SRC") === 0 ? "Source" : d.s.indexOf("Attached.SNK") === 0 ? "Sink" : "";
+        return r;
+      };
+      [[st.A, 115], [st.B, 605]].forEach(function (p, i) {
+        var d = p[0], x = p[1], r = role(d);
+        h += '<text x="' + x + '" y="170" text-anchor="middle" font-size="' + (d.s.length > 16 ? 13 : 15) + '" font-weight="700" fill="#1a202c">' + d.s + "</text>";
+        h += '<text x="' + x + '" y="206" text-anchor="middle" font-size="20" font-weight="700" fill="' + (r === "Source" ? "#d35400" : "#2471a3") + '">' + r + "</text>";
+      });
+      h += '<line x1="220" y1="210" x2="500" y2="210" stroke="' + (st.link ? "#27ae60" : "#718096") + '" stroke-width="' + (st.link ? 5 : 3) + '"/>';
+      h += '<text x="360" y="200" text-anchor="middle" font-size="13" fill="' + (st.link ? "#1e8449" : "#718096") + '" font-weight="700">' + (st.link ? "已連接（CC）" : "CC") + "</text>";
+      h += term(250, st.A.t, 0) + term(470, st.B.t, 1);
+      // VBUS
+      var on = !!st.vbus;
+      h += '<line x1="220" y1="60" x2="500" y2="60" stroke="' + (on ? "#f39c12" : "#cbd5e0") + '" stroke-width="' + (on ? 7 : 4) + '"' + (on ? "" : ' stroke-dasharray="6 6"') + "/>";
+      h += '<text x="360" y="46" text-anchor="middle" font-size="15" font-weight="700" fill="' + (on ? "#d35400" : "#718096") + '">VBUS ' + (on ? "5V" : "0V") + "</text>";
+      if (on) {
+        var fromA = st.vbus === "A";
+        h += '<path d="M' + (fromA ? 470 : 250) + ' 52 L' + (fromA ? 490 : 230) + ' 60 L' + (fromA ? 470 : 250) + ' 68 z" fill="#d35400"/>';
+        h += '<text x="360" y="82" text-anchor="middle" font-size="12" fill="#7a4b00">' + (fromA ? "A → B（A 是 Source）" : "B → A（B 是 Source）") + "</text>";
+      }
+      $("dr-svg").innerHTML = h;
+    }
+    function show() {
+      var S = steps(), st = S.list[idx], n = S.list.length;
+      draw();
+      $("dr-tm").textContent = st.tm;
+      $("dr-title").textContent = String.fromCharCode(0x2460 + idx) + " " + st.title;
+      $("dr-desc").textContent = st.desc;
+      var path = [], last = "";
+      for (var i = 0; i <= idx; i++) { var s = S.list[i].A.s.split("（")[0]; if (s !== last) path.push(s); last = s; }
+      $("dr-path").innerHTML = "<span class=\"db-chip\">本機 A 的狀態路徑：<b>" + path.join(" → ") + "</b></span>";
+      var d = $("dr-dots").children;
+      for (var j = 0; j < d.length; j++) d[j].className = "db-dot" + (j === idx ? " cur" : j < idx ? " done" : "");
+      $("dr-prev").disabled = idx === 0; $("dr-next").disabled = idx === n - 1;
+      $("dr-flip").style.display = sc === "none" ? "" : "none";
+    }
+    function dots() {
+      var b = $("dr-dots"); b.innerHTML = "";
+      steps().list.forEach(function (_, i) {
+        var e = document.createElement("button");
+        e.className = "db-dot"; e.setAttribute("aria-label", "第 " + (i + 1) + " 步");
+        e.onclick = function () { stop(); idx = i; show(); };
+        b.appendChild(e);
+      });
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } $("dr-play").textContent = "播放"; }
+    function go(k) { sc = k; idx = 0; stop(); dots(); show(); }
+    $("dr-prev").onclick = function () { stop(); if (idx > 0) { idx--; show(); } };
+    $("dr-next").onclick = function () { stop(); if (idx < steps().list.length - 1) { idx++; show(); } };
+    $("dr-reset").onclick = function () { stop(); idx = 0; show(); };
+    $("dr-flip").onclick = function () { flip = !flip; show(); };
+    $("dr-play").onclick = function () {
+      if (timer) { stop(); return; }
+      if (idx >= steps().list.length - 1) idx = 0;
+      show(); $("dr-play").textContent = "暫停";
+      timer = setInterval(function () { if (idx < steps().list.length - 1) { idx++; show(); } else stop(); }, 3200);
+    };
+    Array.prototype.forEach.call(root.querySelectorAll(".db-tab"), function (t) {
+      t.onclick = function () {
+        Array.prototype.forEach.call(root.querySelectorAll(".db-tab"), function (o) { o.classList.remove("active"); });
+        t.classList.add("active"); go(t.getAttribute("data-sc"));
+      };
+    });
+    go("none");
+  });
+</script>
 </body>
 </html>
